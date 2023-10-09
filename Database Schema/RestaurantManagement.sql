@@ -1,6 +1,9 @@
 USE [RestaurantManagement]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/9/2023 4:12:41 PM ******/
+DROP PROCEDURE IF EXISTS [dbo].[SSP_ValidateUser]
+GO
+/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetMenu]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Tables]') AND type in (N'U'))
@@ -14,6 +17,9 @@ ALTER TABLE [dbo].[Person_PhoneNo] DROP CONSTRAINT IF EXISTS [FK_Person_PhoneNo_
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Person_Name]') AND type in (N'U'))
 ALTER TABLE [dbo].[Person_Name] DROP CONSTRAINT IF EXISTS [FK_Person_Name_Person]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Person_LoginDetails]') AND type in (N'U'))
+ALTER TABLE [dbo].[Person_LoginDetails] DROP CONSTRAINT IF EXISTS [FK_Person_LoginDetails_Person]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Person_Address]') AND type in (N'U'))
 ALTER TABLE [dbo].[Person_Address] DROP CONSTRAINT IF EXISTS [FK_Person_Address_Person]
@@ -39,162 +45,49 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Customer]') AND type in (N'U'))
 ALTER TABLE [dbo].[Customer] DROP CONSTRAINT IF EXISTS [FK_Customer_Person]
 GO
-/****** Object:  Table [dbo].[Tables]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Tables]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Tables]
 GO
-/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Restaurant_Address]
 GO
-/****** Object:  Table [dbo].[Restaurant]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Restaurant]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Restaurant]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_PhoneNo]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Name]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 10/9/2023 4:12:41 PM ******/
+DROP TABLE IF EXISTS [dbo].[Person_LoginDetails]
+GO
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Address]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person]
 GO
-/****** Object:  Table [dbo].[Order_Items]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Order_Items]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Order_Items]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Order]
 GO
-/****** Object:  Table [dbo].[Menu]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Menu]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Menu]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Employee]
 GO
-/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer_Employee_Order]
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 10/9/2023 4:12:41 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer]
 GO
-/****** Object:  User [Admin]    Script Date: 10/4/2023 7:22:31 PM ******/
-DROP USER IF EXISTS [Admin]
-GO
-USE [master]
-GO
-/****** Object:  Database [RestaurantManagement]    Script Date: 10/4/2023 7:22:31 PM ******/
-DROP DATABASE IF EXISTS [RestaurantManagement]
-GO
-/****** Object:  Database [RestaurantManagement]    Script Date: 10/4/2023 7:22:31 PM ******/
-CREATE DATABASE [RestaurantManagement]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'RestaurantManagement', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\RestaurantManagement.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'RestaurantManagement_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\DATA\RestaurantManagement_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-ALTER DATABASE [RestaurantManagement] SET COMPATIBILITY_LEVEL = 130
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [RestaurantManagement].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [RestaurantManagement] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [RestaurantManagement] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [RestaurantManagement] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [RestaurantManagement] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [RestaurantManagement] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [RestaurantManagement] SET  MULTI_USER 
-GO
-ALTER DATABASE [RestaurantManagement] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [RestaurantManagement] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [RestaurantManagement] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [RestaurantManagement] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [RestaurantManagement] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [RestaurantManagement] SET QUERY_STORE = OFF
-GO
-USE [RestaurantManagement]
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
-GO
-USE [RestaurantManagement]
-GO
-/****** Object:  User [Admin]    Script Date: 10/4/2023 7:22:31 PM ******/
-CREATE USER [Admin] FOR LOGIN [Admin] WITH DEFAULT_SCHEMA=[dbo]
-GO
-ALTER ROLE [db_owner] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_accessadmin] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_securityadmin] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_ddladmin] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_backupoperator] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_datareader] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_datawriter] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_denydatareader] ADD MEMBER [Admin]
-GO
-ALTER ROLE [db_denydatawriter] ADD MEMBER [Admin]
-GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +101,7 @@ CREATE TABLE [dbo].[Customer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,7 +118,7 @@ CREATE TABLE [dbo].[Customer_Employee_Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -239,7 +132,7 @@ CREATE TABLE [dbo].[Employee](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Menu]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Menu]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +148,7 @@ CREATE TABLE [dbo].[Menu](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -270,7 +163,7 @@ CREATE TABLE [dbo].[Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order_Items]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Order_Items]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -286,7 +179,7 @@ CREATE TABLE [dbo].[Order_Items](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -301,7 +194,7 @@ CREATE TABLE [dbo].[Person](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +211,23 @@ CREATE TABLE [dbo].[Person_Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 10/9/2023 4:12:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Person_LoginDetails](
+	[PersonId] [bigint] NOT NULL,
+	[UserName] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Person_LoginDetails] PRIMARY KEY CLUSTERED 
+(
+	[PersonId] ASC,
+	[UserName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -333,7 +242,7 @@ CREATE TABLE [dbo].[Person_Name](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -347,7 +256,7 @@ CREATE TABLE [dbo].[Person_PhoneNo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurant]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Restaurant]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -361,7 +270,7 @@ CREATE TABLE [dbo].[Restaurant](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -377,7 +286,7 @@ CREATE TABLE [dbo].[Restaurant_Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tables]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  Table [dbo].[Tables]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -455,6 +364,10 @@ INSERT [dbo].[Menu] ([ItemId], [Category], [Name], [Cost]) VALUES (N'ST3', N'Sta
 GO
 INSERT [dbo].[Menu] ([ItemId], [Category], [Name], [Cost]) VALUES (N'ST4', N'Starters', N'Veg Hara Bhara Kabab', CAST(185.00 AS Decimal(8, 2)))
 GO
+INSERT [dbo].[Person] ([PersonId], [EmailId], [DateOfBirth]) VALUES (1, N'vikesh@email.com', CAST(N'1989-11-14T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Person_LoginDetails] ([PersonId], [UserName], [Password]) VALUES (1, N'Vikesh', N'a')
+GO
 ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_Person] FOREIGN KEY([PersonId])
 REFERENCES [dbo].[Person] ([PersonId])
 GO
@@ -495,6 +408,11 @@ REFERENCES [dbo].[Person] ([PersonId])
 GO
 ALTER TABLE [dbo].[Person_Address] CHECK CONSTRAINT [FK_Person_Address_Person]
 GO
+ALTER TABLE [dbo].[Person_LoginDetails]  WITH CHECK ADD  CONSTRAINT [FK_Person_LoginDetails_Person] FOREIGN KEY([PersonId])
+REFERENCES [dbo].[Person] ([PersonId])
+GO
+ALTER TABLE [dbo].[Person_LoginDetails] CHECK CONSTRAINT [FK_Person_LoginDetails_Person]
+GO
 ALTER TABLE [dbo].[Person_Name]  WITH CHECK ADD  CONSTRAINT [FK_Person_Name_Person] FOREIGN KEY([PersonId])
 REFERENCES [dbo].[Person] ([PersonId])
 GO
@@ -515,7 +433,7 @@ REFERENCES [dbo].[Order] ([OrderId])
 GO
 ALTER TABLE [dbo].[Tables] CHECK CONSTRAINT [FK_Tables_Order]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 10/4/2023 7:22:31 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 10/9/2023 4:12:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -536,7 +454,28 @@ BEGIN
 	ORDER BY Category
 END
 GO
-USE [master]
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/9/2023 4:12:41 PM ******/
+SET ANSI_NULLS ON
 GO
-ALTER DATABASE [RestaurantManagement] SET  READ_WRITE 
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Vikeshkumar Mewada
+-- Create date: 25/May/2023
+-- Description:	Validates the user
+-- =============================================
+CREATE PROCEDURE [dbo].[SSP_ValidateUser]
+	@UserName nvarchar(50),
+	@Password nvarchar(50)
+AS
+BEGIN
+    IF EXISTS (SELECT PersonId FROM Person_LoginDetails WHERE UserName=@UserName AND Password=@Password)
+	BEGIN
+		SELECT PersonId FROM Person_LoginDetails WHERE UserName=@UserName AND Password=@Password
+	END
+	ELSE
+	BEGIN
+		SELECT '' as PersonId
+	END
+END
 GO
