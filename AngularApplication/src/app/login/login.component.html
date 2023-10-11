@@ -8,7 +8,7 @@
           <div class="userNameInput">
               <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Username</mat-label>
-                  <input formControlName="email" matInput placeholder="Enter EID or CID" [(ngModel)]="userName"
+                  <input formControlName="email" matInput placeholder="Enter User ID" [(ngModel)]="userName"
                       required />
                   <mat-error *ngIf="!loginForm.controls['email'].valid">
                       Username is invalid
