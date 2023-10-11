@@ -1,0 +1,38 @@
+<mat-card style="background-color: #FAFAFA;">
+  <mat-card-content>
+      <div class="header">
+          <h1><b style="color: #006EC7;">Vikesh's Restaurant</b></h1>
+          <mat-divider></mat-divider>
+      </div>
+      <form (ngSubmit)="login()" name="loginForm" [formGroup]="loginForm">
+          <div class="userNameInput">
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Username</mat-label>
+                  <input formControlName="email" matInput placeholder="Enter EID or CID" [(ngModel)]="userName"
+                      required />
+                  <mat-error *ngIf="!loginForm.controls['email'].valid">
+                      Username is invalid
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'"
+                      [(ngModel)]="password" required />
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>
+                          {{hide ? 'visibility_off' : 'visibility'}}
+                      </mat-icon>
+                  </button>
+                  <mat-error *ngIf="!loginForm.controls['password'].valid">
+                      Password is required
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <a routerLink="/forgot-password" routerLinkActive="active" class="aLink">Forgot Password</a>
+          <button mat-flat-button color="primary" style="width: 90%;">Login</button>
+      </form>
+  </mat-card-content>
+</mat-card>
