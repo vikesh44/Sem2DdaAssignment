@@ -41,7 +41,7 @@ namespace RestaurantManagementApi.Controllers
                     new Claim (JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim (JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim ("PersonId", result),
+                    new Claim ("FirstName", result),
                     new Claim ("UserName", userName),
                 };
 

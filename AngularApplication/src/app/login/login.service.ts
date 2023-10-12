@@ -18,7 +18,7 @@ export class LoginService {
       .subscribe({
         next: (result: any) => {
           localStorage.setItem("token", result.accessToken);
-          localStorage.setItem("currentUser", result.name);
+          localStorage.setItem("currentUser", result.personName);
           this.router.navigate(['/menu']);
         },
         error: (err: any) => {
