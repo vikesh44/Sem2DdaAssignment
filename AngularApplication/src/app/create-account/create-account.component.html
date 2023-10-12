@@ -1,0 +1,111 @@
+<mat-card style="background-color: #fafafa">
+  <mat-card-content>
+    <div class="header">
+      <h1><b style="color: #006ec7">Create Account</b></h1>
+      <mat-divider></mat-divider>
+    </div>
+    <form
+      (ngSubmit)="createAccount()"
+      name="createAcccountForm"
+      [formGroup]="createAcccountForm"
+    >
+      <br />
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          formControlName="userName"
+          matInput
+          placeholder="Enter Username"
+          required
+        />
+        <mat-error *ngIf="!createAcccountForm.controls['userName'].valid">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide Password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>
+            {{ hide ? "visibility_off" : "visibility" }}
+          </mat-icon>
+        </button>
+        <mat-error *ngIf="!createAcccountForm.controls['password'].valid">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email Id</mat-label>
+        <input
+          formControlName="emailId"
+          matInput
+          placeholder="Enter Email Id"
+          required
+        />
+        <mat-error *ngIf="!createAcccountForm.controls['emailId'].valid">
+          Email Id is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          formControlName="firstName"
+          matInput
+          placeholder="Enter First Name"
+          required
+        />
+        <mat-error *ngIf="!createAcccountForm.controls['firstName'].valid">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          formControlName="lastName"
+          matInput
+          placeholder="Enter Last Name"
+          required
+        />
+        <mat-error *ngIf="!createAcccountForm.controls['lastName'].valid">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input
+          formControlName="phoneNo"
+          matInput
+          placeholder="Enter Phone Number"
+          required
+        />
+        <mat-error *ngIf="!createAcccountForm.controls['phoneNo'].valid">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dateOfBirth"
+          placeholder="Date of Birth"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-flat-button color="primary" style="width: 90%">
+        Create Account
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -8,8 +8,19 @@ export const environment = {
 };
 
 export enum ApiPaths {
-  Login='/Login',
-  Menu='/Menu'
+  Login = '/Login',
+  Menu = '/Menu',
+  Customer = '/Customer?'
+}
+
+export enum PersondetailPaths {
+  UserName = 'UserName=',
+  Password = 'Password=',
+  EmailId = 'EmailId=',
+  DateOfBirth = 'DateOfBirth=',
+  FirstName = 'FirstName=',
+  LastName = 'LastName=',
+  PhoneNo = 'PhoneNo='
 }
 
 /*

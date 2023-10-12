@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptor/token.interceptor';
+import { DatePipe } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -27,7 +28,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MenuDialogComponent } from './menu/menu-dialog/menu-dialog.component';
-
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const MaterialComponents = [
   BrowserModule,
@@ -49,6 +52,8 @@ const MaterialComponents = [
   MatToolbarModule,
   MatDialogModule,
   MatSortModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
@@ -57,10 +62,12 @@ const MaterialComponents = [
     LoginComponent,
     TemplateComponent,
     MenuComponent,
-    MenuDialogComponent
+    MenuDialogComponent,
+    CreateAccountComponent,
   ],
   imports: [MaterialComponents],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -69,4 +76,4 @@ const MaterialComponents = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
