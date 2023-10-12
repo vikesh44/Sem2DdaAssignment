@@ -26,6 +26,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
+import { MenuDialogComponent } from './menu/menu-dialog/menu-dialog.component';
 
 
 const MaterialComponents = [
@@ -55,7 +56,8 @@ const MaterialComponents = [
     AppComponent,
     LoginComponent,
     TemplateComponent,
-    MenuComponent
+    MenuComponent,
+    MenuDialogComponent
   ],
   imports: [MaterialComponents],
   providers: [

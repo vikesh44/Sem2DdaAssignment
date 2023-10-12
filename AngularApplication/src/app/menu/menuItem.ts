@@ -4,3 +4,9 @@ export interface MenuItem {
     name: string;
     cost: number;
 }
+
+export interface UpdateMenuItem {
+    category: string;
+    name: string;
+    cost: number;
+}

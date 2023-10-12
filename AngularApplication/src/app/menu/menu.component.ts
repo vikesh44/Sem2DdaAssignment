@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuService } from './menu.service';
 import { MenuItem } from './menuItem';
+import { MenuDialogComponent } from './menu-dialog/menu-dialog.component';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,7 @@ import { MenuItem } from './menuItem';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private modelService: MenuService, public dialog: MatDialog) {
+  constructor(private menuService: MenuService, public dialog: MatDialog) {
     this.getAllMenuItems();
   }
 
@@ -33,7 +34,7 @@ export class MenuComponent implements OnInit {
   }
 
   getAllMenuItems() {
-    this.modelService.getAllMenus().subscribe({
+    this.menuService.getAllMenus().subscribe({
       next: (res: MenuItem[] | undefined) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -46,26 +47,26 @@ export class MenuComponent implements OnInit {
   }
 
   addMenuItemDialog() {
-    // const dialogRef = this.dialog.open(MenuDialogComponent, {
-    //   width: '25%'
-    // });
+    const dialogRef = this.dialog.open(MenuDialogComponent, {
+      width: '25%'
+    });
   }
 
   updateMenuItemDialog(row: any) {
-    // const dialogRef = this.dialog.open(MenuDialogComponent, {
-    //   width: '25%',
-    //   data: row
-    // });
+    const dialogRef = this.dialog.open(MenuDialogComponent, {
+      width: '25%',
+      data: row
+    });
   }
   deleteMenuItem(row: any) {
-    // this.modelService.deleteMenu(row.modelNumber).subscribe({
-    //   next: () => {
-    //     alert('Menu deleted!');
-    //     this.getAllMenus();
-    //   },
-    //   error: (err: any) => {
-    //     alert('Error while deleting user!');
-    //   },
-    // });
+    this.menuService.deleteMenuItem(row.itemId).subscribe({
+      next: () => {
+        alert('Menu deleted!');
+        this.getAllMenuItems();
+      },
+      error: (err: any) => {
+        alert('Error while deleting menu item!');
+      },
+    });
   }
 }
