@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using RestaurantManagementApi.DTO;
 using RestaurantManagementApi.Helper;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -27,9 +28,12 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@Password", password)
             };
 
-            string? result = await DbHelper.Instance.GetFirstRecord<string>("SSP_ValidateUser", parameters);
+            List<PersonLoginDetail> result = await DbHelper.Instance.GetData<PersonLoginDetail>("SSP_ValidateUser", parameters);
 
-            if (string.IsNullOrEmpty(result))
+            if (result == null || 
+                result.Count < 1 || 
+                result[0] == null ||
+                string.IsNullOrEmpty(result[0].FirstName))
             {
                 return Unauthorized();
             }
@@ -41,7 +45,7 @@ namespace RestaurantManagementApi.Controllers
                     new Claim (JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim (JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim ("FirstName", result),
+                    new Claim ("FirstName", result[0].FirstName),
                     new Claim ("UserName", userName),
                 };
 
@@ -55,20 +59,20 @@ namespace RestaurantManagementApi.Controllers
 
                 string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new UserLogin(userName, result, jwtToken));
+                return Ok(new UserLogin(result[0].PersonId, result[0].FirstName, jwtToken));
             }
         }
     }
 
     public class UserLogin
     {
-        public UserLogin(string personId, string personName, string accessToken)
+        public UserLogin(long personId, string personName, string accessToken)
         {
             PersonId = personId;
             PersonName = personName;
             AccessToken = accessToken;
         }
-        public string PersonId { get; set; }
+        public long PersonId { get; set; }
         public string PersonName { get; set; }
         public string AccessToken { get; set; }
     }

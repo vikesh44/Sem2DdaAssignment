@@ -1,47 +1,62 @@
-<mat-toolbar color="primary" style="height: 7vh;">
-  <button mat-icon-button (click)="sidenav.toggle();">
+<mat-toolbar color="primary" style="height: 7vh">
+  <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Vikesh's Restaurant</span>
   <span class="spacer"></span>
-  {{name}}
-  <button mat-icon-button class="example-icon" (click)="logout()">
-    <mat-icon>logout</mat-icon>
+  {{ name }}
+  <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="profile">
+      <mat-icon>manage_accounts</mat-icon>Profile
+    </button>
+    <button mat-menu-item>
+      <mat-icon>home</mat-icon>Address
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>Sign out
+    </button>
+  </mat-menu>
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" style="width: 12vw;">
+  <mat-sidenav #sidenav mode="side" style="width: 12vw">
     <mat-nav-list>
       <a mat-list-item routerLink="login" routerLinkActive="active">
-        <button (click)='sidenav.close()' mat-icon-button class="navButton">
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
           <mat-icon class="matIconStyle">home</mat-icon>&nbsp;&nbsp;Home
         </button>
       </a>
       <a mat-list-item routerLink="menu" routerLinkActive="active">
-        <button (click)='sidenav.close()' mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">analytics</mat-icon>&nbsp;&nbsp;Menu Items
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
+          <mat-icon class="matIconStyle">analytics</mat-icon>&nbsp;&nbsp;Menu
+          Items
         </button>
       </a>
       <a mat-list-item routerLink="projects" routerLinkActive="active">
-        <button (click)='sidenav.close()' mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">card_membership</mat-icon>&nbsp;&nbsp;Projects
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
+          <mat-icon class="matIconStyle">card_membership</mat-icon
+          >&nbsp;&nbsp;Projects
         </button>
       </a>
       <a mat-list-item routerLink="masterdata" routerLinkActive="active">
-        <button (click)='sidenav.close()' mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">settings</mat-icon>&nbsp;&nbsp;Configuration
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
+          <mat-icon class="matIconStyle">settings</mat-icon
+          >&nbsp;&nbsp;Configuration
         </button>
       </a>
       <a mat-list-item routerLink="users" routerLinkActive="active">
-        <button (click)='sidenav.close()' mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">manage_accounts</mat-icon>&nbsp;&nbsp;Users
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
+          <mat-icon class="matIconStyle">manage_accounts</mat-icon
+          >&nbsp;&nbsp;Users
         </button>
       </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 93vh;">
+    <div style="height: 93vh">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

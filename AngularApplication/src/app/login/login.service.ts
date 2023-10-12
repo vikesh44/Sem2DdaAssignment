@@ -19,6 +19,7 @@ export class LoginService {
         next: (result: any) => {
           localStorage.setItem("token", result.accessToken);
           localStorage.setItem("currentUser", result.personName);
+          localStorage.setItem("personId", result.personId);
           this.router.navigate(['/menu']);
         },
         error: (err: any) => {

@@ -15,4 +15,15 @@
         public string LastName { get; set; }
         public string PhoneNo { get; set; }
     }
+
+    public class PersonLoginDetail
+    {
+        public PersonLoginDetail()
+        {
+            
+        }
+
+        public long PersonId { get; set; }
+        public string FirstName { get; set; }
+    }
 }

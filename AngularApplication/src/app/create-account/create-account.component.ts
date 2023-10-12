@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CeateAccountService } from './create-account.service';
+import { CreateAccountService } from './create-account.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Persondetail } from './personDetail';
 import { Router } from '@angular/router';
@@ -11,18 +11,18 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./create-account.component.scss'],
 })
 export class CreateAccountComponent implements OnInit {
-  createAcccountForm!: FormGroup;
+  createAccountForm!: FormGroup;
   hide = true;
 
   constructor(
-    private createAcountService: CeateAccountService,
+    private createAccountService: CreateAccountService,
     private formBuilder: FormBuilder,
     private router: Router,
     private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
-    this.createAcccountForm = this.formBuilder.group({
+    this.createAccountForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
       password: ['', Validators.required],
       emailId: ['', Validators.required],
@@ -35,16 +35,16 @@ export class CreateAccountComponent implements OnInit {
 
   createAccount() {
     var modelData: Persondetail = {
-      userName: this.createAcccountForm.value.userName,
-      password: this.createAcccountForm.value.password,
-      emailId: this.createAcccountForm.value.emailId,
-      dateOfBirth: this.datePipe.transform(this.createAcccountForm.value.dateOfBirth,"yyyy-MM-dd")?.toString(),
-      firstName: this.createAcccountForm.value.firstName,
-      lastName: this.createAcccountForm.value.lastName,
-      phoneNo: this.createAcccountForm.value.phoneNo,
+      userName: this.createAccountForm.value.userName,
+      password: this.createAccountForm.value.password,
+      emailId: this.createAccountForm.value.emailId,
+      dateOfBirth: this.datePipe.transform(this.createAccountForm.value.dateOfBirth,"yyyy-MM-dd")?.toString(),
+      firstName: this.createAccountForm.value.firstName,
+      lastName: this.createAccountForm.value.lastName,
+      phoneNo: this.createAccountForm.value.phoneNo,
     };
 
-    this.createAcountService.addPerson(modelData).subscribe({
+    this.createAccountService.addPerson(modelData).subscribe({
       next: () => {
         alert('Account Created Successfully. Please login using username and password.');
         this.router.navigate(['/menu']);

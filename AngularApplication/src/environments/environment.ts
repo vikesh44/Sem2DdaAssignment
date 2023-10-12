@@ -10,7 +10,7 @@ export const environment = {
 export enum ApiPaths {
   Login = '/Login',
   Menu = '/Menu',
-  Customer = '/Customer?'
+  Person = '/Person'
 }
 
 export enum PersondetailPaths {

@@ -5,6 +5,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './shared/auth.guard';
 import { TemplateComponent } from './template/template.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: '', component: TemplateComponent, children: [
       { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     ],
   },
   { path: '**', redirectTo: 'login' },

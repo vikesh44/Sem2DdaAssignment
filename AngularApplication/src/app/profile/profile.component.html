@@ -1,13 +1,13 @@
 <mat-card style="background-color: #fafafa">
   <mat-card-content>
     <div class="header">
-      <h1><b style="color: #006ec7">Create Account</b></h1>
+      <h1><b style="color: #006ec7">Account Detail</b></h1>
       <mat-divider></mat-divider>
     </div>
     <form
       (ngSubmit)="createAccount()"
-      name="createAccountForm"
-      [formGroup]="createAccountForm"
+      name="updateProfileForm"
+      [formGroup]="updateProfileForm"
     >
       <br />
       <mat-form-field class="full-width" appearance="outline">
@@ -18,7 +18,7 @@
           placeholder="Enter Username"
           required
         />
-        <mat-error *ngIf="!createAccountForm.controls['userName'].valid">
+        <mat-error *ngIf="!updateProfileForm.controls['userName'].valid">
           Username is required
         </mat-error>
       </mat-form-field>
@@ -40,7 +40,7 @@
             {{ hide ? "visibility_off" : "visibility" }}
           </mat-icon>
         </button>
-        <mat-error *ngIf="!createAccountForm.controls['password'].valid">
+        <mat-error *ngIf="!updateProfileForm.controls['password'].valid">
           Password is required
         </mat-error>
       </mat-form-field>
@@ -52,7 +52,7 @@
           placeholder="Enter Email Id"
           required
         />
-        <mat-error *ngIf="!createAccountForm.controls['emailId'].valid">
+        <mat-error *ngIf="!updateProfileForm.controls['emailId'].valid">
           Email Id is required
         </mat-error>
       </mat-form-field>
@@ -64,7 +64,7 @@
           placeholder="Enter First Name"
           required
         />
-        <mat-error *ngIf="!createAccountForm.controls['firstName'].valid">
+        <mat-error *ngIf="!updateProfileForm.controls['firstName'].valid">
           First Name is required
         </mat-error>
       </mat-form-field>
@@ -76,7 +76,7 @@
           placeholder="Enter Last Name"
           required
         />
-        <mat-error *ngIf="!createAccountForm.controls['lastName'].valid">
+        <mat-error *ngIf="!updateProfileForm.controls['lastName'].valid">
           Last Name is required
         </mat-error>
       </mat-form-field>
@@ -88,8 +88,8 @@
           placeholder="Enter Phone Number"
           required
         />
-        <mat-error *ngIf="!createAccountForm.controls['phoneNo'].valid">
-          Last Name is required
+        <mat-error *ngIf="!updateProfileForm.controls['phoneNo'].valid">
+          Phone No is required
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="outline">
@@ -104,7 +104,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <button mat-flat-button color="primary" style="width: 90%">
-        Create Account
+        Update Details
       </button>
     </form>
   </mat-card-content>

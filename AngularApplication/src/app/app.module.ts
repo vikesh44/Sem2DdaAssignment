@@ -31,6 +31,8 @@ import { MenuDialogComponent } from './menu/menu-dialog/menu-dialog.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { ProfileComponent } from './profile/profile.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -54,6 +56,7 @@ const MaterialComponents = [
   MatSortModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatMenuModule,
 ];
 
 @NgModule({
@@ -64,6 +67,7 @@ const MaterialComponents = [
     MenuComponent,
     MenuDialogComponent,
     CreateAccountComponent,
+    ProfileComponent,
   ],
   imports: [MaterialComponents],
   providers: [
