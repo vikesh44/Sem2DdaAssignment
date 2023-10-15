@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateAccountComponent } from '../create-account/create-account.component';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   tokenValue = "";
   hide = true;
 
-  constructor(private loginService: LoginService, private fb: FormBuilder) {
+  constructor(private loginService: LoginService, private fb: FormBuilder, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -30,5 +32,11 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loginService.loginUser(this.userName, this.password);
+  }
+
+  createAccount() {
+    const dialogRef = this.dialog.open(CreateAccountComponent, {
+      width: '25%'
+    });
   }
 }

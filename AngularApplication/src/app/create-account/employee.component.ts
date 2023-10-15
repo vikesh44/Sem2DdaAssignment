@@ -43,31 +43,31 @@ export class EmployeeComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       error: () => {
-        alert('Error while reading Menu Items!');
+        alert('Error while reading Employees!');
       },
     });
   }
 
   addEmployeeDialog() {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
-      width: '40%'
+      width: '25%'
     });
   }
 
   updateEmployeeDialog(row: any) {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
-      width: '40%',
+      width: '25%',
       data: row
     });
   }
   deleteEmployee(row: any) {
-    this.accountService.deletePerson(row.itemId, false).subscribe({
+    this.accountService.deletePerson(row.personId, false).subscribe({
       next: () => {
-        alert('Menu deleted!');
+        alert('Employee deleted!');
         this.getAllEmployees();
       },
       error: (err: any) => {
-        alert('Error while deleting menu item!');
+        alert('Error while deleting Employee!');
       },
     });
   }

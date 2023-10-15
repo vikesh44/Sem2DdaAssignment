@@ -31,7 +31,7 @@
                   </mat-error>
               </mat-form-field>
           </div>
-          <a routerLink="/create-account" routerLinkActive="active" class="aLink">Create Account</a>
+          <a class="aLink" (click)="createAccount()">Create Account</a>
           <a routerLink="/forgot-password" routerLinkActive="active" class="aLink">Forgot Password</a>
           <button mat-flat-button color="primary" style="width: 90%;">Login</button>
       </form>

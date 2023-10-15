@@ -11,7 +11,7 @@ export interface Persondetail {
 export interface SavePersonDetails {
   personId: number;
   userName: string;
-  password?: string;
+  password: string;
   emailId: string;
   dateOfBirth?: string;
   firstName: string;
