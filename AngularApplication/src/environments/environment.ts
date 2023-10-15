@@ -11,7 +11,8 @@ export enum ApiPaths {
   Login = '/Login/ValidateUser',
   ForgotPassword = '/Login/ForgotPassword',
   Menu = '/Menu',
-  Person = '/Person'
+  Person = '/Person',
+  PersonAddress='/PersonAddress',
 }
 
 export enum PersondetailPaths {

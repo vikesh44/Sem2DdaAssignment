@@ -62,7 +62,7 @@ namespace RestaurantManagementApi.Controllers
 
                 string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new UserLogin(result[0].PersonId, result[0].FirstName, jwtToken));
+                return Ok(new UserLogin(result[0].PersonId, result[0].FirstName, jwtToken, result[0].IsCustomer));
             }
         }
 
@@ -115,14 +115,16 @@ namespace RestaurantManagementApi.Controllers
 
     public class UserLogin
     {
-        public UserLogin(long personId, string personName, string accessToken)
+        public UserLogin(long personId, string personName, string accessToken, bool isCustomer)
         {
             PersonId = personId;
             PersonName = personName;
             AccessToken = accessToken;
+            IsCustomer = isCustomer;
         }
         public long PersonId { get; set; }
         public string PersonName { get; set; }
         public string AccessToken { get; set; }
+        public bool IsCustomer { get; set; }
     }
 }

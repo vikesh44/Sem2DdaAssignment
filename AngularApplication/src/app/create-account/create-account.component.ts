@@ -57,7 +57,7 @@ export class CreateAccountComponent implements OnInit {
 
   private addNewEmployee() {
     var modelData: SavePersonDetails = {
-      personId: -1,
+      personId: '-1',
       userName: this.createAccountForm.value.userName,
       password: this.createAccountForm.value.password,
       emailId: this.createAccountForm.value.emailId,

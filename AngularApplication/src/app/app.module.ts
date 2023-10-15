@@ -35,6 +35,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './login/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee.component';
+import { PersonAddressComponent } from './person-address/person-address.component';
+import { AddressDialogComponent } from './person-address/address-dialog/address-dialog.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -72,6 +74,8 @@ const MaterialComponents = [
     ProfileComponent,
     ForgotPasswordComponent,
     EmployeeComponent,
+    PersonAddressComponent,
+    AddressDialogComponent,
   ],
   imports: [MaterialComponents],
   providers: [

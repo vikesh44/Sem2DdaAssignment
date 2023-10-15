@@ -28,6 +28,7 @@ export class LoginService {
           localStorage.setItem('token', result.accessToken);
           localStorage.setItem('currentUser', result.personName);
           localStorage.setItem('personId', result.personId);
+          localStorage.setItem('isCustomer', result.isCustomer);
           this.router.navigate(['/menu']);
         },
         error: (err: any) => {

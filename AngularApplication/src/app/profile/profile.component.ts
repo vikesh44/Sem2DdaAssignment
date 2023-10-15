@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ProfileService } from './profile.service';
-import { Persondetail } from '../create-account/personDetail';
+import { Persondetail, SavePersonDetails } from '../create-account/personDetail';
 
 @Component({
   selector: 'app-update-profile',
@@ -28,19 +27,11 @@ export class ProfileComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNo: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(10),
-        ],
-      ],
+      phoneNo: ['', Validators.required],
     });
 
     this.profileService.getPersonDetail().subscribe({
       next: (res: Persondetail[]) => {
-        this.updateProfileForm.controls['personId'].setValue(res[0].personId);
         this.updateProfileForm.controls['userName'].setValue(res[0].userName);
         this.updateProfileForm.controls['emailId'].setValue(res[0].emailId);
         this.updateProfileForm.controls['dateOfBirth'].setValue(res[0].dateOfBirth);
@@ -55,9 +46,12 @@ export class ProfileComponent implements OnInit {
   }
 
   createAccount() {
-    var modelData: Persondetail = {
-      personId: this.updateProfileForm.value.personId,
+    alert(String(localStorage.getItem('isCustomer')) == "true");
+
+    var modelData: SavePersonDetails = {
+      personId: String(localStorage.getItem('personId')),
       userName: this.updateProfileForm.value.userName,
+      password: this.updateProfileForm.value.password,
       emailId: this.updateProfileForm.value.emailId,
       dateOfBirth: this.datePipe
         .transform(this.updateProfileForm.value.dateOfBirth, 'yyyy-MM-dd')
@@ -65,6 +59,7 @@ export class ProfileComponent implements OnInit {
       firstName: this.updateProfileForm.value.firstName,
       lastName: this.updateProfileForm.value.lastName,
       phoneNo: this.updateProfileForm.value.phoneNo,
+      isCustomer: String(localStorage.getItem('isCustomer')) == "true"
     };
 
     this.profileService.updatePerson(modelData).subscribe({

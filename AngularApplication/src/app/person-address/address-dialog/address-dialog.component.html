@@ -1,0 +1,29 @@
+<h2 mat-dialog-title style="background-color: primary;">Add New Address</h2>
+<div mat-dialog-content>
+  <form [formGroup]="addressDialogForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Address No</mat-label>
+      <input formControlName="addressNo" matInput readonly required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>House No</mat-label>
+      <input formControlName="houseNo" matInput placeholder="Enter House Number and Name" required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Area</mat-label>
+      <input formControlName="area" matInput placeholder="Enter Area Details" required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>City</mat-label>
+      <input formControlName="city" matInput placeholder="Enter City and State" required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Zip</mat-label>
+      <input formControlName="zip" matInput placeholder="Enter Zip Code" required />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="addUpdateAddress()">{{buttonText}}</button>
+</mat-dialog-actions>

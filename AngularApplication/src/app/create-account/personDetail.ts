@@ -1,5 +1,5 @@
 export interface Persondetail {
-  personId: number;
+  personId: string;
   userName: string;
   emailId: string;
   dateOfBirth?: string;
@@ -9,7 +9,7 @@ export interface Persondetail {
 }
 
 export interface SavePersonDetails {
-  personId: number;
+  personId: string;
   userName: string;
   password: string;
   emailId: string;

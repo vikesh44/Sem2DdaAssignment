@@ -36,5 +36,6 @@
 
         public long PersonId { get; set; }
         public string FirstName { get; set; }
+        public bool IsCustomer { get; set; }
     }
 }
