@@ -33,6 +33,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
+import { ForgotPasswordComponent } from './login/forgot-password.component';
+import { EmployeeComponent } from './create-account/employee.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -68,6 +70,8 @@ const MaterialComponents = [
     MenuDialogComponent,
     CreateAccountComponent,
     ProfileComponent,
+    ForgotPasswordComponent,
+    EmployeeComponent,
   ],
   imports: [MaterialComponents],
   providers: [

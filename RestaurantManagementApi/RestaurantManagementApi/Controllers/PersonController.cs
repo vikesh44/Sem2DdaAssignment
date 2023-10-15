@@ -21,8 +21,15 @@ namespace RestaurantManagementApi.Controllers
             return Ok(await DbHelper.Instance.GetData<PersonDetails>("SSP_GetCustomerDetail", parameters));
         }
 
+        [HttpGet]
+        [Route("GetEmployees")]
+        public async Task<IActionResult> GetEmployees()
+        {
+            return Ok(await DbHelper.Instance.GetData<PersonDetails>("SSP_GetEmployees"));
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreatePersonAccount(PersonDetails personDetails)
+        public async Task<IActionResult> CreatePersonAccount(SavePersonDetails personDetails)
         {
             List<ProcedureParameter> parameters = new()
             {
@@ -33,6 +40,7 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@FirstName", personDetails.FirstName),
                 new ProcedureParameter ("@LastName", personDetails.LastName),
                 new ProcedureParameter ("@PhoneNo", personDetails.PhoneNo),
+                new ProcedureParameter ("@IsCustomer", personDetails.IsCustomer),
             };
 
             int insertedRecords = await DbHelper.Instance.UpdateData("SSP_AddPerson", parameters);
@@ -42,7 +50,7 @@ namespace RestaurantManagementApi.Controllers
 
         [HttpPut]
         [Route("{personId}")]
-        public async Task<IActionResult> UpdatePersonAccount([FromRoute] string personId, PersonDetails personDetails)
+        public async Task<IActionResult> UpdatePersonAccount([FromRoute] string personId, SavePersonDetails personDetails)
         {
             List<ProcedureParameter> parameters = new()
             {
@@ -56,9 +64,24 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@PhoneNo", personDetails.PhoneNo),
             };
 
-            int insertedRecords = await DbHelper.Instance.UpdateData("SSP_UpdateCustomer", parameters);
+            int insertedRecords = await DbHelper.Instance.UpdateData("SSP_UpdatePerson", parameters);
 
             return insertedRecords >= 1 ? Ok(personDetails) : Content("Error creating updating person");
+        }
+
+        [HttpDelete]
+        [Route("{personId}/{isCustomer}")]
+        public async Task<IActionResult> DeletePerson([FromRoute] string personId, [FromRoute] bool isCustomer)
+        {
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@PersonId", personId),
+                new ProcedureParameter ("@IsCustomer", isCustomer)
+            };
+
+            int deletedRecords = await DbHelper.Instance.UpdateData("SSP_DeletePerson", parameters);
+
+            return deletedRecords >= 1 ? Ok() : this.Content("Error deleting user.");
         }
     }
 }

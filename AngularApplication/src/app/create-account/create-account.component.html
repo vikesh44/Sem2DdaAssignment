@@ -1,7 +1,7 @@
 <mat-card style="background-color: #fafafa">
   <mat-card-content>
     <div class="header">
-      <h1><b style="color: #006ec7">Create Account</b></h1>
+      <h1><b style="color: #006ec7">{{headerText}}</b></h1>
       <mat-divider></mat-divider>
     </div>
     <form
@@ -104,7 +104,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <button mat-flat-button color="primary" style="width: 90%">
-        Create Account
+        {{buttonText}}
       </button>
     </form>
   </mat-card-content>

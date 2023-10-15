@@ -40,8 +40,8 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.getPersonDetail().subscribe({
       next: (res: Persondetail[]) => {
+        this.updateProfileForm.controls['personId'].setValue(res[0].personId);
         this.updateProfileForm.controls['userName'].setValue(res[0].userName);
-        this.updateProfileForm.controls['password'].setValue(res[0].password);
         this.updateProfileForm.controls['emailId'].setValue(res[0].emailId);
         this.updateProfileForm.controls['dateOfBirth'].setValue(res[0].dateOfBirth);
         this.updateProfileForm.controls['firstName'].setValue(res[0].firstName);
@@ -56,8 +56,8 @@ export class ProfileComponent implements OnInit {
 
   createAccount() {
     var modelData: Persondetail = {
+      personId: this.updateProfileForm.value.personId,
       userName: this.updateProfileForm.value.userName,
-      password: this.updateProfileForm.value.password,
       emailId: this.updateProfileForm.value.emailId,
       dateOfBirth: this.datePipe
         .transform(this.updateProfileForm.value.dateOfBirth, 'yyyy-MM-dd')
