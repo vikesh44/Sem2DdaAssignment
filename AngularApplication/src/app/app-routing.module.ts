@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './login/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee.component';
 import { PersonAddressComponent } from './person-address/person-address.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
       { path: 'address', component: PersonAddressComponent, canActivate: [AuthGuard] },
+      { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
     ],
   },
   { path: '**', redirectTo: 'login' },

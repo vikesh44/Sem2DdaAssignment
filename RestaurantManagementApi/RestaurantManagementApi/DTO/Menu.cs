@@ -10,6 +10,7 @@
         public string Category { get; set; }
         public string Name { get; set; }
         public decimal Cost { get; set; }
+        public bool IsAvailable { get; set; }
     }
 
     public class Menu : UpdateMenu

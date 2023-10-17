@@ -29,7 +29,7 @@ export class LoginService {
           localStorage.setItem('currentUser', result.personName);
           localStorage.setItem('personId', result.personId);
           localStorage.setItem('isCustomer', result.isCustomer);
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/order']);
         },
         error: (err: any) => {
           alert(

@@ -1,0 +1,75 @@
+table {
+  width: 100%;
+}
+
+th {
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+}
+
+.full-width {
+  width: 99%;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+}
+
+.action-button-container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: auto;
+}
+
+.action-button {
+  margin-right: 16px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+// mat-card {
+//   width: 60%;
+//   margin: 2% auto;
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// mat-form-field {
+//   width: 100%;
+//   justify-content: center;
+//   align-self: center;
+// }
+
+// .edit-users {
+//   overflow: auto;
+//   width: 100%;
+//   justify-content: center;
+//   align-self: center;
+// }
+
+// .full-width-table {
+//   width: 100%;
+// }
+
+// .reset {
+//   margin-top: 30px;
+//   width: 20%;
+//   justify-content: center;
+//   align-self: center;
+// }
+
+// .submit {
+//   margin-top: 30px;
+//   width: 20%;
+//   justify-content: center;
+//   align-self: center;
+//   margin-left: 60%;
+// }
+
+// tr.readonly {
+//   background-color: #eeeeee;
+// }

@@ -1,3 +1,8 @@
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file at http://angular.io/license -->
+
+
 <div class="action-button-container" align="end">
   <button mat-raised-button color="primary" (click)="addMenuItemDialog()" class="action-button">
     <mat-icon>add_chart</mat-icon>
@@ -31,6 +36,11 @@
     <ng-container matColumnDef="Cost">
       <th mat-header-cell *matHeaderCellDef>Cost</th>
       <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="IsAvailable">
+      <th mat-header-cell *matHeaderCellDef>Availability</th>
+      <td mat-cell *matCellDef="let element">{{ element.isAvailable }}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">

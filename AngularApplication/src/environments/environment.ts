@@ -13,6 +13,7 @@ export enum ApiPaths {
   Menu = '/Menu',
   Person = '/Person',
   PersonAddress='/PersonAddress',
+  Order='/Order',
 }
 
 export enum PersondetailPaths {

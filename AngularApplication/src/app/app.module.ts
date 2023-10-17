@@ -37,6 +37,9 @@ import { ForgotPasswordComponent } from './login/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee.component';
 import { PersonAddressComponent } from './person-address/person-address.component';
 import { AddressDialogComponent } from './person-address/address-dialog/address-dialog.component';
+import { OrderComponent } from './order/order.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 const MaterialComponents = [
   BrowserModule,
@@ -61,6 +64,8 @@ const MaterialComponents = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatMenuModule,
+  MatCheckboxModule,
+  MatRadioModule,
 ];
 
 @NgModule({
@@ -76,6 +81,7 @@ const MaterialComponents = [
     EmployeeComponent,
     PersonAddressComponent,
     AddressDialogComponent,
+    OrderComponent,
   ],
   imports: [MaterialComponents],
   providers: [

@@ -24,7 +24,8 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@ItemId", menuItem.ItemId),
                 new ProcedureParameter ("@Category", menuItem.Category),
                 new ProcedureParameter ("@Name", menuItem.Name),
-                new ProcedureParameter ("@Cost", menuItem.Cost)
+                new ProcedureParameter ("@Cost", menuItem.Cost),
+                new ProcedureParameter ("@IsAvailable", menuItem.IsAvailable),
             };
 
             int updatedRecords = await DbHelper.Instance.UpdateData("SSP_AddUpdateMenuItem", parameters);
@@ -41,7 +42,8 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@ItemId", menuItemId),
                 new ProcedureParameter ("@Category", menuItem.Category),
                 new ProcedureParameter ("@Name", menuItem.Name),
-                new ProcedureParameter ("@Cost", menuItem.Cost)
+                new ProcedureParameter ("@Cost", menuItem.Cost),
+                new ProcedureParameter ("@IsAvailable", menuItem.IsAvailable),
             };
 
             int updatedRecords = await DbHelper.Instance.UpdateData("SSP_AddUpdateMenuItem", parameters);

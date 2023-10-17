@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MenuService } from '../menu.service';
 import { MenuItem, UpdateMenuItem } from '../menuItem';
 
-
 @Component({
   selector: 'app-menu-dialog',
   templateUrl: './menu-dialog.component.html',
@@ -12,14 +11,14 @@ import { MenuItem, UpdateMenuItem } from '../menuItem';
 })
 export class MenuDialogComponent implements OnInit {
   menuDialogForm!: FormGroup;
-  buttonText: string = "Add";
+  buttonText: string = 'Add';
 
   constructor(
     private formBuilder: FormBuilder,
     private menuService: MenuService,
     private menuDialog: MatDialogRef<MenuDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public editData: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.menuDialogForm = this.formBuilder.group({
@@ -27,14 +26,18 @@ export class MenuDialogComponent implements OnInit {
       category: ['', Validators.required],
       name: ['', Validators.required],
       cost: ['', Validators.required],
+      isAvailable: [''],
     });
 
     if (this.editData) {
-      this.buttonText = "Update";
-      this.menuDialogForm.controls["itemId"].setValue(this.editData.itemId);
-      this.menuDialogForm.controls["category"].setValue(this.editData.category);
-      this.menuDialogForm.controls["name"].setValue(this.editData.name);
-      this.menuDialogForm.controls["cost"].setValue(this.editData.cost);
+      this.buttonText = 'Update';
+      this.menuDialogForm.controls['itemId'].setValue(this.editData.itemId);
+      this.menuDialogForm.controls['category'].setValue(this.editData.category);
+      this.menuDialogForm.controls['name'].setValue(this.editData.name);
+      this.menuDialogForm.controls['cost'].setValue(this.editData.cost);
+      this.menuDialogForm.controls['isAvailable'].setValue(
+        this.editData.isAvailable
+      );
     }
   }
 
@@ -52,6 +55,7 @@ export class MenuDialogComponent implements OnInit {
       category: this.menuDialogForm.value.category,
       name: this.menuDialogForm.value.name,
       cost: this.menuDialogForm.value.cost,
+      isAvailable: this.menuDialogForm.value.isAvailable,
     };
     this.menuService.addMenuItem(modelData).subscribe({
       next: () => {
@@ -71,16 +75,19 @@ export class MenuDialogComponent implements OnInit {
       category: this.menuDialogForm.value.category,
       name: this.menuDialogForm.value.name,
       cost: this.menuDialogForm.value.cost,
+      isAvailable: this.menuDialogForm.value.isAvailable,
     };
-    this.menuService.updateMenuItem(this.menuDialogForm.value.itemId, modelData).subscribe({
-      next: () => {
-        this.menuDialogForm.reset();
-        this.menuDialog.close();
-        alert('Model Updated Successfully.');
-      },
-      error: () => {
-        alert('Error while Updating Model.');
-      },
-    });
+    this.menuService
+      .updateMenuItem(this.menuDialogForm.value.itemId, modelData)
+      .subscribe({
+        next: () => {
+          this.menuDialogForm.reset();
+          this.menuDialog.close();
+          alert('Model Updated Successfully.');
+        },
+        error: () => {
+          alert('Error while Updating Model.');
+        },
+      });
   }
 }

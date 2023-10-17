@@ -1,3 +1,8 @@
+/**  Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license */
+
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -22,6 +27,7 @@ export class MenuComponent implements OnInit {
     'Category',
     'Name',
     'Cost',
+    'IsAvailable',
     'action',
   ];
 
