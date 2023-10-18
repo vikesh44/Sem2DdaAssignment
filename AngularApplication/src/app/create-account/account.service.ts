@@ -12,12 +12,12 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   getEmployees(): any {
-    return this.http.get<any>(environment.baseUrl + ApiPaths.Person + "/GetEmployees");
+    return this.http.get<any>(environment.baseUrl + ApiPaths.Person + ApiPaths.GetEmployees);
   }
 
   addPerson(persondetail: SavePersonDetails): any {
     return this.http.post(
-      environment.baseUrl + ApiPaths.Person,
+      environment.baseUrl + ApiPaths.CreateAccount,
       JSON.stringify(persondetail),
       { headers: this.headers }
     );

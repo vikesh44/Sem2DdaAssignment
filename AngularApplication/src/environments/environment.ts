@@ -12,8 +12,11 @@ export enum ApiPaths {
   ForgotPassword = '/Login/ForgotPassword',
   Menu = '/Menu',
   Person = '/Person',
+  CreateAccount = '/Person/CreatePersonAccount',
   PersonAddress='/PersonAddress',
   Order='/Order',
+  GetEmployees='/GetEmployees',
+  GetCustomers='/GetCustomers',
 }
 
 export enum PersondetailPaths {

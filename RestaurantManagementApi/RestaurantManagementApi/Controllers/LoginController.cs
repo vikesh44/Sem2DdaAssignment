@@ -111,6 +111,28 @@ namespace RestaurantManagementApi.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPost]
+        [Route("CreatePersonAccount")]
+        public async Task<IActionResult> CreatePersonAccount(SavePersonDetails personDetails)
+        {
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@UserName", personDetails.UserName),
+                new ProcedureParameter ("@Password", personDetails.Password),
+                new ProcedureParameter ("@EmailId", personDetails.EmailId),
+                new ProcedureParameter ("@DateOfBirth", personDetails.DateOfBirth.ToString("yyyy-MM-dd")),
+                new ProcedureParameter ("@FirstName", personDetails.FirstName),
+                new ProcedureParameter ("@LastName", personDetails.LastName),
+                new ProcedureParameter ("@PhoneNo", personDetails.PhoneNo),
+                new ProcedureParameter ("@IsCustomer", personDetails.IsCustomer),
+            };
+
+            int insertedRecords = await DbHelper.Instance.UpdateData("SSP_AddPerson", parameters);
+
+            return insertedRecords >= 1 ? Ok(personDetails) : Content("Error creating new person");
+        }
     }
 
     public class UserLogin

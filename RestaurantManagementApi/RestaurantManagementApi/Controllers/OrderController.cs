@@ -6,8 +6,7 @@ using RestaurantManagementApi.Helper;
 
 namespace RestaurantManagementApi.Controllers
 {
-    //[ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [ApiController]
+    [ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class OrderController : Controller
     {

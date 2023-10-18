@@ -14,10 +14,35 @@ export class OrderService {
   getAllOrders(isCompleted: boolean): any {
     var personId = localStorage.getItem('personId');
     var isCustomer = localStorage.getItem('isCustomer');
-    return this.http.get<any>(environment.baseUrl + ApiPaths.Order + '/' + personId + '/' + isCustomer + '/' + isCompleted);
+    return this.http.get<any>(
+      environment.baseUrl +
+        ApiPaths.Order +
+        '/' +
+        personId +
+        '/' +
+        isCustomer +
+        '/' +
+        isCompleted
+    );
   }
 
-  addMenuItem(order: Order): any {
-    return this.http.post(environment.baseUrl + ApiPaths.Order, JSON.stringify(order), { headers: this.headers });
+  createOrder(order: Order): any {
+    return this.http.post(
+      environment.baseUrl + ApiPaths.Order,
+      JSON.stringify(order),
+      { headers: this.headers }
+    );
+  }
+
+  getEmployees(): any {
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.Person + ApiPaths.GetEmployees
+    );
+  }
+
+  getCustomers(): any {
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.Person + ApiPaths.GetCustomers
+    );
   }
 }

@@ -1,48 +1,48 @@
 USE [RestaurantManagement]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_ValidateUser]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_UpdatePerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_UpdatePerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_UpdatePerson]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_RetrivePassword]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_RetrivePassword]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_RetrivePassword]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPersonOrders]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersons]    Script Date: 18-10-2023 10.08.31 PM ******/
+DROP PROCEDURE IF EXISTS [dbo].[SSP_GetPersons]
+GO
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersonOrders]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetPersonOrders]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetPersonAddress]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetMenu]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetEmployees]    Script Date: 17-10-2023 11.43.37 PM ******/
-DROP PROCEDURE IF EXISTS [dbo].[SSP_GetEmployees]
-GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetCustomerDetail]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetCustomerDetail]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetCustomerDetail]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_DeletePersonAddress]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_DeletePerson]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeleteMenuItem]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeleteMenuItem]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_DeleteMenuItem]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_CreateOrder]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_CreateOrder]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_CreateOrder]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_AddUpdatePersonAddress]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdateMenuItem]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdateMenuItem]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_AddUpdateMenuItem]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddPerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddPerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_AddPerson]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Tables]') AND type in (N'U'))
@@ -93,52 +93,52 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Menu]') AND type in (N'U'))
 ALTER TABLE [dbo].[Menu] DROP CONSTRAINT IF EXISTS [DF_Menu_IsAvailable]
 GO
-/****** Object:  Table [dbo].[Tables]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Tables]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Tables]
 GO
-/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Restaurant_Address]
 GO
-/****** Object:  Table [dbo].[Restaurant]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Restaurant]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Restaurant]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_PhoneNo]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Name]
 GO
-/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_LoginDetails]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Address]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person]
 GO
-/****** Object:  Table [dbo].[Order_Items]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Order_Items]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Order_Items]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Order]
 GO
-/****** Object:  Table [dbo].[Menu]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Menu]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Menu]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Employee]
 GO
-/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer_Employee_Order]
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer]
 GO
-/****** Object:  UserDefinedTableType [dbo].[PersonAddressData]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[PersonAddressData]    Script Date: 18-10-2023 10.08.31 PM ******/
 DROP TYPE IF EXISTS [dbo].[PersonAddressData]
 GO
-/****** Object:  UserDefinedTableType [dbo].[PersonAddressData]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  UserDefinedTableType [dbo].[PersonAddressData]    Script Date: 18-10-2023 10.08.31 PM ******/
 CREATE TYPE [dbo].[PersonAddressData] AS TABLE(
 	[PersonId] [bigint] NOT NULL,
 	[AddressNo] [int] NOT NULL,
@@ -153,7 +153,7 @@ CREATE TYPE [dbo].[PersonAddressData] AS TABLE(
 )WITH (IGNORE_DUP_KEY = OFF)
 )
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +167,7 @@ CREATE TABLE [dbo].[Customer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Customer_Employee_Order]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -185,7 +185,7 @@ CREATE TABLE [dbo].[Customer_Employee_Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +199,7 @@ CREATE TABLE [dbo].[Employee](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Menu]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Menu]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -216,7 +216,7 @@ CREATE TABLE [dbo].[Menu](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Order]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -232,7 +232,7 @@ CREATE TABLE [dbo].[Order](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Order_Items]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Order_Items]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,7 +248,7 @@ CREATE TABLE [dbo].[Order_Items](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -263,7 +263,7 @@ CREATE TABLE [dbo].[Person](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,7 +282,7 @@ CREATE TABLE [dbo].[Person_Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_LoginDetails]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -299,7 +299,7 @@ CREATE TABLE [dbo].[Person_LoginDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -314,7 +314,7 @@ CREATE TABLE [dbo].[Person_Name](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -329,7 +329,7 @@ CREATE TABLE [dbo].[Person_PhoneNo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurant]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Restaurant]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -343,7 +343,7 @@ CREATE TABLE [dbo].[Restaurant](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Restaurant_Address]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +359,7 @@ CREATE TABLE [dbo].[Restaurant_Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tables]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  Table [dbo].[Tables]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -588,7 +588,7 @@ REFERENCES [dbo].[Order] ([OrderId])
 GO
 ALTER TABLE [dbo].[Tables] CHECK CONSTRAINT [FK_Tables_Order]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddPerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddPerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -651,7 +651,7 @@ BEGIN
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdateMenuItem]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdateMenuItem]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -695,7 +695,7 @@ BEGIN
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -734,7 +734,7 @@ BEGIN
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_CreateOrder]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_CreateOrder]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -807,7 +807,7 @@ BEGIN
 	SELECT @OrderId AS OrderId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeleteMenuItem]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeleteMenuItem]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -824,7 +824,7 @@ BEGIN
 	DELETE FROM [Menu] WHERE [ItemId]=@ItemId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -864,7 +864,7 @@ BEGIN
 	--DELETE FROM [Person] WHERE [PersonId]=@PersonId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -882,7 +882,7 @@ BEGIN
 	DELETE FROM [Person_Address] WHERE [PersonId]=@PersonId AND [AddressNo]=@AddressNo
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetCustomerDetail]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetCustomerDetail]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -910,33 +910,7 @@ BEGIN
 	 WHERE P.[PersonId]=@PersonId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetEmployees]    Script Date: 17-10-2023 11.43.37 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		Vikeshkumar Mewada
--- Create date: 12/Oct/2023
--- Description:	Gets the all Employee details
--- =============================================
-CREATE PROCEDURE [dbo].[SSP_GetEmployees]
-AS
-BEGIN	
-	SELECT P.[PersonId]
-		  ,[UserName]
-		  ,[EmailId]
-		  ,[DateOfBirth]
-		  ,[FirstName]
-		  ,[LastName]
-		  ,(SELECT STRING_AGG(PhoneNo, ',') FROM Person_PhoneNo WHERE PersonId=P.[PersonId]) AS PhoneNo
-	  FROM [Person] P
-	  INNER JOIN [Person_Name] PN ON P.PersonId=PN.PersonId
-	  INNER JOIN [Person_LoginDetails] PLD ON P.PersonId=PLD.PersonId
-	  INNER JOIN [Employee] E ON P.[PersonId]=E.[PersonId]
-END
-GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetMenu]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -958,7 +932,7 @@ BEGIN
 	ORDER BY [Category]
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPersonAddress]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersonAddress]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -982,7 +956,7 @@ BEGIN
 	 WHERE [PersonId]=@PersonId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPersonOrders]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersonOrders]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1016,7 +990,37 @@ BEGIN
 	   AND [IsCompleted]=@IsCompleted
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_RetrivePassword]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPersons]    Script Date: 18-10-2023 10.08.31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Vikeshkumar Mewada
+-- Create date: 12/Oct/2023
+-- Description:	Gets the all Employee details
+-- =============================================
+CREATE PROCEDURE [dbo].[SSP_GetPersons]
+@IsCustomer bit
+AS
+BEGIN	
+	SELECT P.[PersonId]
+		  ,[UserName]
+		  ,[EmailId]
+		  ,[DateOfBirth]
+		  ,[FirstName]
+		  ,[LastName]
+		  ,(SELECT STRING_AGG(PhoneNo, ',') FROM Person_PhoneNo WHERE PersonId=P.[PersonId]) AS PhoneNo
+	  FROM [Person] P
+	  INNER JOIN [Person_Name] PN ON P.PersonId=PN.PersonId
+	  INNER JOIN [Person_LoginDetails] PLD ON P.PersonId=PLD.PersonId
+	  LEFT JOIN [Employee] E ON P.[PersonId]=E.[PersonId]
+	  LEFT JOIN [Customer] C ON P.[PersonId]=C.[PersonId]
+	 WHERE (@IsCustomer=1 AND C.[CustomerId] IS NOT NULL) 
+		OR (@IsCustomer=0 AND E.[EmployeeId] IS NOT NULL)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SSP_RetrivePassword]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1036,7 +1040,7 @@ BEGIN
 	 WHERE P.[EmailId]=@EmailId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_UpdatePerson]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_UpdatePerson]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1085,7 +1089,7 @@ BEGIN
 	END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 17-10-2023 11.43.37 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 18-10-2023 10.08.31 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

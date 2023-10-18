@@ -25,27 +25,22 @@ namespace RestaurantManagementApi.Controllers
         [Route("GetEmployees")]
         public async Task<IActionResult> GetEmployees()
         {
-            return Ok(await DbHelper.Instance.GetData<PersonDetails>("SSP_GetEmployees"));
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@IsCustomer", false)
+            };
+            return Ok(await DbHelper.Instance.GetData<PersonDetails>("SSP_GetPersons", parameters));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreatePersonAccount(SavePersonDetails personDetails)
+        [HttpGet]
+        [Route("GetCustomers")]
+        public async Task<IActionResult> GetCustomers()
         {
             List<ProcedureParameter> parameters = new()
             {
-                new ProcedureParameter ("@UserName", personDetails.UserName),
-                new ProcedureParameter ("@Password", personDetails.Password),
-                new ProcedureParameter ("@EmailId", personDetails.EmailId),
-                new ProcedureParameter ("@DateOfBirth", personDetails.DateOfBirth.ToString("yyyy-MM-dd")),
-                new ProcedureParameter ("@FirstName", personDetails.FirstName),
-                new ProcedureParameter ("@LastName", personDetails.LastName),
-                new ProcedureParameter ("@PhoneNo", personDetails.PhoneNo),
-                new ProcedureParameter ("@IsCustomer", personDetails.IsCustomer),
+                new ProcedureParameter ("@IsCustomer", true)
             };
-
-            int insertedRecords = await DbHelper.Instance.UpdateData("SSP_AddPerson", parameters);
-
-            return insertedRecords >= 1 ? Ok(personDetails) : Content("Error creating new person");
+            return Ok(await DbHelper.Instance.GetData<PersonDetails>("SSP_GetPersons", parameters));
         }
 
         [HttpPut]
