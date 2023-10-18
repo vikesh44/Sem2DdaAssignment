@@ -9,6 +9,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from './order.service';
 import { PersonOrder } from './orderDto';
+import { CreateOrderDialogComponent } from './create-order-dialog/create-order.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Persondetail } from '../create-account/personDetail';
 
 @Component({
   selector: 'app-order',
@@ -16,8 +19,11 @@ import { PersonOrder } from './orderDto';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  constructor(private orderService: OrderService, public dialog: MatDialog) {
-    this.getAllOrders();
+  createOrderDialogForm!: FormGroup;
+
+  constructor(private orderService: OrderService,
+              public dialog: MatDialog,
+              private formBuilder: FormBuilder) {
   }
 
   displayedColumns: string[] = [
@@ -35,6 +41,7 @@ export class OrderComponent implements OnInit {
   dataSource!: MatTableDataSource<PersonOrder>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  employeesData: Persondetail[] = [];
 
   ngOnInit(): void {
     this.getAllOrders();
@@ -54,9 +61,9 @@ export class OrderComponent implements OnInit {
   }
 
   createOrder() {
-    // const dialogRef = this.dialog.open(MenuDialogComponent, {
-    //   width: '25%',
-    // });
+    const dialogRef = this.dialog.open(CreateOrderDialogComponent, {
+      width: '25%',
+    });
   }
 }
 

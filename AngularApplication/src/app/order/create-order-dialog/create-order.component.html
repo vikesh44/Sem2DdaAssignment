@@ -1,0 +1,42 @@
+<h2 mat-dialog-title style="background-color: primary;">Add New Menu Item</h2>
+<div mat-dialog-content>
+  <form [formGroup]="createOrderDialogForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Employee Id</mat-label>
+      <mat-select formControlName="employeeId" placeholder="Select Employee" required >
+        <mat-option *ngFor="let employee of employeesData" [value]="employee.personId">
+          {{employee.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Customer Id</mat-label>
+      <mat-select formControlName="customerId" placeholder="Select Customer" required >
+        <mat-option *ngFor="let customer of customerData" [value]="customer.personId">
+          {{customer.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Table Id</mat-label>
+      <input formControlName="tableId" matInput placeholder="Enter Item Name" required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Order Type</mat-label>
+      <mat-select formControlName="orderType" placeholder="Select Order Type" required >
+        <mat-option *ngFor="let type of orderType" value="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <!-- <mat-label>Reservation</mat-label> -->
+      <input formControlName="isReservation" hidden matInput placeholder="Enter Item Cost" required />
+      <mat-checkbox formControlName="isReservation">Table Reserved</mat-checkbox>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="createOrder()">{{buttonText}}</button>
+</mat-dialog-actions>

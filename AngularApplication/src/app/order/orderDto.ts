@@ -4,7 +4,7 @@ export interface PersonOrder {
   orderId: string;
   customerId: string;
   employeeId: string;
-  tableId: string;
+  tableId: number;
   orderType: string;
   cost: number;
   isCompleted: boolean;
@@ -15,6 +15,6 @@ export interface Order {
   orderType: string;
   customerId: string;
   employeeId: string;
-  tableId: string;
+  tableId: number;
   isReservation: boolean;
 }
