@@ -10,9 +10,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OrderService } from '../order.service';
 import { ActivatedRoute } from '@angular/router';
-import { OrderItem } from '../orderDto';
+import { OrderDialogData, OrderItem } from '../orderDto';
 import { MenuItem } from 'src/app/menu/menuItem';
 import { OrderItemDialogComponent } from '../order-item-dialog/order-item-dialog.component';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-order-items',
@@ -27,7 +28,6 @@ export class OrderItemsComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder,
     private activatedRoute:ActivatedRoute
   ) {}
 
@@ -42,25 +42,12 @@ export class OrderItemsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   employeesData: OrderItem[] = [];
-  menuItems: MenuItem[]=[];
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.orderId = String(params.get("orderId"));
     });
-    this.getAllMenuItems();
     this.getAllOrderItems();
-  }
-
-  getAllMenuItems() {
-    this.orderService.getMenuItems().subscribe({
-      next: (res: MenuItem[]) => {
-        this.menuItems = res
-      },
-      error: () => {
-        alert('Error while reading Menu Items!');
-      },
-    });
   }
 
   getAllOrderItems() {
@@ -77,26 +64,51 @@ export class OrderItemsComponent implements OnInit {
   }
 
   addOrderItemDialog() {
+    var modelData: OrderDialogData = {
+      orderId: this.orderId
+    };
     const dialogRef = this.dialog.open(OrderItemDialogComponent, {
-      width: '25%'
+      width: '25%',
+      data: modelData
     });
+    dialogRef.afterClosed().subscribe(_data =>{
+      this.getAllOrderItems();
+    })
   }
 
   updateOrderItemDialog(row: any) {
+    var modelData: OrderDialogData = {
+      orderId: this.orderId,
+      orderItem: row
+    };
     const dialogRef = this.dialog.open(OrderItemDialogComponent, {
       width: '25%',
-      data: row
+      data: modelData
+    });
+    dialogRef.afterClosed().subscribe(_data =>{
+      this.getAllOrderItems();
+    })
+  }
+
+  deleteOrderItem(row: any) {
+    this.orderService.deleteOrderItem(this.orderId, row.itemId).subscribe({
+      next: () => {
+        this.getAllOrderItems();
+      },
+      error: (_err: any) => {
+        alert('Error while deleting item!');
+      },
     });
   }
-  deleteOrderItem(row: any) {
-    // this.orderService.deleteMenuItem(row.itemId).subscribe({
-    //   next: () => {
-    //     alert('Item deleted!');
-    //     this.getAllOrderItems();
-    //   },
-    //   error: (err: any) => {
-    //     alert('Error while deleting item!');
-    //   },
-    // });
+
+  completeOrder(row: any) {
+    this.orderService.deleteOrderItem(this.orderId, row.itemId).subscribe({
+      next: () => {
+        this.getAllOrderItems();
+      },
+      error: (_err: any) => {
+        alert('Error while deleting item!');
+      },
+    });
   }
 }

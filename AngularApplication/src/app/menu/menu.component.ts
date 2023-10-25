@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MenuService } from './menu.service';
 import { MenuItem } from './menuItem';
 import { MenuDialogComponent } from './menu-dialog/menu-dialog.component';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,7 +19,7 @@ import { MenuDialogComponent } from './menu-dialog/menu-dialog.component';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private menuService: MenuService, public dialog: MatDialog) {
+  constructor(private menuService: MenuService, public dialog: MatDialog, private authService: AuthService) {
     this.getAllMenuItems();
   }
 
@@ -34,9 +35,11 @@ export class MenuComponent implements OnInit {
   dataSource!: MatTableDataSource<MenuItem>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isEmployee!: boolean;
 
   ngOnInit(): void {
     this.getAllMenuItems();
+    this.isEmployee = this.authService.IsEmployee();
   }
 
   getAllMenuItems() {

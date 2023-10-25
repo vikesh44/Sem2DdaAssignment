@@ -35,22 +35,10 @@
           Items
         </button>
       </a>
-      <a mat-list-item routerLink="employee" routerLinkActive="active">
+      <a mat-list-item routerLink="employee" routerLinkActive="active" *ngIf="isEmployee">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
           <mat-icon class="matIconStyle">card_membership</mat-icon
           >&nbsp;&nbsp;Employees
-        </button>
-      </a>
-      <a mat-list-item routerLink="masterdata" routerLinkActive="active">
-        <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">settings</mat-icon
-          >&nbsp;&nbsp;Configuration
-        </button>
-      </a>
-      <a mat-list-item routerLink="users" routerLinkActive="active">
-        <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">manage_accounts</mat-icon
-          >&nbsp;&nbsp;Users
         </button>
       </a>
     </mat-nav-list>

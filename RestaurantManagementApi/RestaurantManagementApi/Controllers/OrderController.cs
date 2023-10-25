@@ -7,13 +7,12 @@ using System.Data;
 
 namespace RestaurantManagementApi.Controllers
 {
-    [ApiController]
-    //[ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
         #region Order Methods
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder(Order order)
         {
@@ -62,14 +61,11 @@ namespace RestaurantManagementApi.Controllers
 
         [HttpPost]
         [Route("AddOrderItems")]
-        public async Task<IActionResult> AddOrderItems(List<OrderItem> orderItems)
+        public async Task<IActionResult> AddOrderItems(OrderItem orderItems)
         {
             DataTable dataTable = GetOrderItemDataTable();
 
-            foreach (OrderItem item in orderItems)
-            {
-                dataTable.Rows.Add(CreateDataRow(dataTable.NewRow(), item));
-            }
+            dataTable.Rows.Add(CreateDataRow(dataTable.NewRow(), orderItems));
 
             List<ProcedureParameter> parameters = new()
             {

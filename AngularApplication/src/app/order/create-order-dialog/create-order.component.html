@@ -3,7 +3,7 @@
   <form [formGroup]="createOrderDialogForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Employee Id</mat-label>
-      <mat-select formControlName="employeeId" placeholder="Select Employee" required >
+      <mat-select formControlName="employeeId" placeholder="Select Employee" required [disabled]="isEmployee">
         <mat-option *ngFor="let employee of employeesData" [value]="employee.personId">
           {{employee.firstName}}
         </mat-option>
@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Customer Id</mat-label>
-      <mat-select formControlName="customerId" placeholder="Select Customer" required >
+      <mat-select formControlName="customerId" placeholder="Select Customer" required [disabled]="!isEmployee">
         <mat-option *ngFor="let customer of customerData" [value]="customer.personId">
           {{customer.firstName}}
         </mat-option>

@@ -10,4 +10,8 @@ export class AuthService {
   IsLoggedIn() {
     return !!localStorage.getItem('token');
   }
+
+  IsEmployee() {
+    return this.IsLoggedIn() && localStorage.getItem('isCustomer') === 'false';
+  }
 }

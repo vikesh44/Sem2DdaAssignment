@@ -3,7 +3,7 @@
   <form [formGroup]="orderItemDialogForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Order Id</mat-label>
-      <input formControlName="orderId" matInput required />
+      <input formControlName="orderId" matInput required readonly/>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Item Id</mat-label>
@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Quantity</mat-label>
-      <input formControlName="quantity" matInput placeholder="Enter Quantity" required />
+      <input formControlName="quantity" matInput placeholder="Enter Quantity" type="number" required />
     </mat-form-field>
   </form>
 </div>

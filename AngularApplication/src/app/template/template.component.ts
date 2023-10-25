@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-template',
@@ -10,9 +11,10 @@ import { Subject } from 'rxjs';
 export class TemplateComponent implements OnInit {
   userActivity: any;
   userInactive: Subject<any> = new Subject();
+  isEmployee!: boolean;
 
   name!: string;
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.userInactive.subscribe(() => this.logout());
   }
 
@@ -20,6 +22,8 @@ export class TemplateComponent implements OnInit {
     const userJson = localStorage.getItem('currentUser');
     this.name = userJson !== null ? `Hello ${userJson} ` : '';
     this.autoLogout(120000);
+    this.isEmployee = this.authService.IsEmployee();
+    console.log(this.isEmployee);
   }
 
   autoLogout(expirationTime: number): void {

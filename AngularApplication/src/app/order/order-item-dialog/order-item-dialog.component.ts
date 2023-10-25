@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderService } from '../order.service';
-import { OrderItem } from '../orderDto';
+import { OrderDialogData, OrderItem } from '../orderDto';
+import { MenuItem } from 'src/app/menu/menuItem';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-item-dialog',
@@ -12,12 +14,15 @@ import { OrderItem } from '../orderDto';
 export class OrderItemDialogComponent implements OnInit {
   orderItemDialogForm!: FormGroup;
   buttonText: string = 'Add';
+  orderId!: string;
+  menuItems: MenuItem[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private orderService: OrderService,
     private orderItemDialog: MatDialogRef<OrderItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public editData: any
+    @Inject(MAT_DIALOG_DATA) public editData: OrderDialogData,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -27,16 +32,20 @@ export class OrderItemDialogComponent implements OnInit {
       quantity: ['', Validators.required],
     });
 
-    if (this.editData) {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.orderId = String(params.get('orderId'));
+    });
+    this.getAllMenuItems();
+    this.orderItemDialogForm.controls['orderId'].setValue(this.editData.orderId);
+
+    if (this.editData.orderItem) {
       this.buttonText = 'Update';
-      this.orderItemDialogForm.controls['orderId'].setValue(
-        this.editData.orderId
-      );
+
       this.orderItemDialogForm.controls['itemId'].setValue(
-        this.editData.itemId
+        this.editData.orderItem.itemId
       );
       this.orderItemDialogForm.controls['quantity'].setValue(
-        this.editData.quantity
+        this.editData.orderItem.quantity
       );
     }
   }
@@ -48,7 +57,7 @@ export class OrderItemDialogComponent implements OnInit {
       quantity: this.orderItemDialogForm.value.quantity,
     };
 
-    if (this.editData) {
+    if (this.editData.orderItem) {
       this.orderService.updateOrderQuantity(modelData).subscribe({
         next: () => {
           this.orderItemDialogForm.reset();
@@ -70,5 +79,16 @@ export class OrderItemDialogComponent implements OnInit {
       });
     }
     return modelData;
+  }
+
+  getAllMenuItems() {
+    this.orderService.getMenuItems().subscribe({
+      next: (res: MenuItem[]) => {
+        this.menuItems = res;
+      },
+      error: () => {
+        alert('Error while reading Menu Items!');
+      },
+    });
   }
 }

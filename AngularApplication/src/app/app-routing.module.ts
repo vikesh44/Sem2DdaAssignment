@@ -11,6 +11,7 @@ import { EmployeeComponent } from './create-account/employee.component';
 import { PersonAddressComponent } from './person-address/person-address.component';
 import { OrderComponent } from './order/order.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { RoleGuard } from './shared/role.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,8 +22,8 @@ const routes: Routes = [
     path: '', component: TemplateComponent, children: [
       { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
       { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-      { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
       { path: 'address', component: PersonAddressComponent, canActivate: [AuthGuard] },
+      { path: 'employee', component: EmployeeComponent, canActivate: [RoleGuard] },
       { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
       { path: 'order-items/:orderId', component: OrderItemsComponent, canActivate: [AuthGuard] },
     ],

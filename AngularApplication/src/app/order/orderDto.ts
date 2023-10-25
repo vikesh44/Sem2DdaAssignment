@@ -24,3 +24,8 @@ export interface OrderItem {
   itemId: string;
   quantity: number;
 }
+
+export interface OrderDialogData {
+  orderId: string;
+  orderItem?: OrderItem;
+}

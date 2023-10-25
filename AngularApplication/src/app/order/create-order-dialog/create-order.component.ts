@@ -5,6 +5,7 @@ import { OrderService } from '../order.service';
 import { Order } from '../orderDto';
 import { MatTableDataSource } from '@angular/material/table';
 import { Persondetail } from 'src/app/create-account/personDetail';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-create-order',
@@ -14,16 +15,19 @@ import { Persondetail } from 'src/app/create-account/personDetail';
 export class CreateOrderDialogComponent implements OnInit {
   createOrderDialogForm!: FormGroup;
   buttonText: string = 'Add';
+  isEmployee!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private orderService: OrderService,
-    private orderDialog: MatDialogRef<CreateOrderDialogComponent>
+    private orderDialog: MatDialogRef<CreateOrderDialogComponent>,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getAllEmployees();
     this.getAllCustomers();
+    this.isEmployee = this.authService.IsEmployee();
 
     this.createOrderDialogForm = this.formBuilder.group({
       employeeId: [''],
@@ -43,9 +47,15 @@ export class CreateOrderDialogComponent implements OnInit {
       next: (res: Persondetail[]) => {
         this.employeesData = res;
         console.log(localStorage.getItem('personId'));
-        this.createOrderDialogForm.controls['employeeId'].setValue(
-          Number(localStorage.getItem('personId'))
-        );
+        if (this.isEmployee) {
+          this.createOrderDialogForm.controls['employeeId'].setValue(
+            Number(localStorage.getItem('personId'))
+          );
+        } else {
+          this.createOrderDialogForm.controls['customerId'].setValue(
+            Number(localStorage.getItem('personId'))
+          );
+        }
       },
       error: () => {
         alert('Error while reading Employees!');

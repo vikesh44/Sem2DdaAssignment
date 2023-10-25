@@ -4,7 +4,7 @@
 
 
 <div class="action-button-container" align="end">
-  <button mat-raised-button color="primary" (click)="addMenuItemDialog()" class="action-button">
+  <button mat-raised-button color="primary" (click)="addMenuItemDialog()" class="action-button" *ngIf="isEmployee">
     <mat-icon>add_chart</mat-icon>
   </button>
   <button mat-raised-button color="accent" (click)="getAllMenuItems()" class="action-button">
@@ -46,10 +46,10 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="updateMenuItemDialog(element)">
+        <button mat-icon-button color="primary" (click)="updateMenuItemDialog(element)" *ngIf="isEmployee">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteMenuItem(element)">
+        <button mat-icon-button color="warn" (click)="deleteMenuItem(element)" *ngIf="isEmployee">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
