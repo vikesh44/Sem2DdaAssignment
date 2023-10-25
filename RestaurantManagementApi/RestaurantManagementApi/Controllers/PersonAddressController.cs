@@ -11,10 +11,6 @@ namespace RestaurantManagementApi.Controllers
     [Route("api/[controller]")]
     public class PersonAddressController : Controller
     {
-        private const string TYPE_INT64 = "System.Int64";
-        private const string TYPE_INT32 = "System.Int32";
-        private const string TYPE_STRING = "System.String";
-
         [HttpGet]
         [Route("{personId}")]
         public async Task<IActionResult> GetPersonAddress([FromRoute] string personId)
@@ -31,12 +27,12 @@ namespace RestaurantManagementApi.Controllers
         public async Task<IActionResult> AddPersonAddress(PersonAddress personAddress)
         {
             DataTable dataTable = new();
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_INT64), "PersonId"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_INT32), "AddressNo"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "HouseNo"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "Area"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "City"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "Zip"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_INT64), "PersonId"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_INT32), "AddressNo"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "HouseNo"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "Area"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "City"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "Zip"));
 
             DataRow dtRow = dataTable.NewRow();
             dtRow["PersonId"] = personAddress.PersonId;
@@ -74,12 +70,12 @@ namespace RestaurantManagementApi.Controllers
         public async Task<IActionResult> UpdateMenuItem([FromRoute] string personId, PersonAddress personAddress)
         {
             DataTable dataTable = new();
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_INT64), "PersonId"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_INT32), "AddressNo"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "HouseNo"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "Area"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "City"));
-            dataTable.Columns.Add(CreateDataColumn(Type.GetType(TYPE_STRING), "Zip"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_INT64), "PersonId"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_INT32), "AddressNo"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "HouseNo"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "Area"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "City"));
+            dataTable.Columns.Add(CreateDataColumn(Type.GetType(Constants.TYPE_STRING), "Zip"));
 
             DataRow dtRow = dataTable.NewRow();
             dtRow["PersonId"] = personId;

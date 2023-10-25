@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './login/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee.component';
 import { PersonAddressComponent } from './person-address/person-address.component';
 import { OrderComponent } from './order/order.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
       { path: 'address', component: PersonAddressComponent, canActivate: [AuthGuard] },
       { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+      { path: 'order-items/:orderId', component: OrderItemsComponent, canActivate: [AuthGuard] },
     ],
   },
   { path: '**', redirectTo: 'login' },

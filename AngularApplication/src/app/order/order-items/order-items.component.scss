@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+}
+
+th {
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+}
+
+.full-width {
+  width: 99%;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+}
+
+.action-button-container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: auto;
+}
+
+.action-button {
+  margin-right: 16px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}

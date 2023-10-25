@@ -15,6 +15,8 @@ export enum ApiPaths {
   CreateAccount = '/Person/CreatePersonAccount',
   PersonAddress='/PersonAddress',
   Order='/Order',
+  AddOrderItems='/Order/AddOrderItems',
+  UpdateQuantity='/Order/UpdateQuantity',
   GetEmployees='/GetEmployees',
   GetCustomers='/GetCustomers',
 }

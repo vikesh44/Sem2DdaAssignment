@@ -21,4 +21,11 @@
         public bool IsReservation { get; set; }
         public bool IsCompleted { get; set; }
     }
+
+    public class OrderItem
+    {
+        public string OrderId { get; set; }
+        public string ItemId { get; set; }
+        public int Quantity { get; set; }
+    }
 }

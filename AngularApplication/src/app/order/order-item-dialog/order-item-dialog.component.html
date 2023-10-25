@@ -1,0 +1,21 @@
+<h2 mat-dialog-title style="background-color: primary;">Add New Item</h2>
+<div mat-dialog-content>
+  <form [formGroup]="orderItemDialogForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Order Id</mat-label>
+      <input formControlName="orderId" matInput required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Item Id</mat-label>
+      <input formControlName="itemId" matInput placeholder="Enter Item Id" required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Quantity</mat-label>
+      <input formControlName="quantity" matInput placeholder="Enter Quantity" required />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="addUpdateOrderItem()">{{buttonText}}</button>
+</mat-dialog-actions>

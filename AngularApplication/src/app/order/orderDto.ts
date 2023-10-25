@@ -18,3 +18,9 @@ export interface Order {
   tableId: number;
   isReservation: boolean;
 }
+
+export interface OrderItem {
+  orderId: string;
+  itemId: string;
+  quantity: number;
+}

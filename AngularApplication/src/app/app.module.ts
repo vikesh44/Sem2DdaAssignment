@@ -42,6 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OrderItemDialogComponent } from './order/order-item-dialog/order-item-dialog.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -86,6 +88,8 @@ const MaterialComponents = [
     AddressDialogComponent,
     OrderComponent,
     CreateOrderDialogComponent,
+    OrderItemsComponent,
+    OrderItemDialogComponent,
   ],
   imports: [MaterialComponents],
   providers: [
