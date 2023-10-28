@@ -16,14 +16,22 @@ export class MenuService {
   }
 
   addMenuItem(newMenuItem: MenuItem): any {
-    return this.http.post(environment.baseUrl + ApiPaths.Menu, JSON.stringify(newMenuItem), { headers: this.headers });
+    return this.http.post(
+      environment.baseUrl + ApiPaths.Menu,
+      JSON.stringify(newMenuItem),
+      { headers: this.headers }
+    );
   }
 
   updateMenuItem(itemId: string, menuItem: UpdateMenuItem): any {
-    return this.http.put(environment.baseUrl + ApiPaths.Menu + '/' + itemId, JSON.stringify(menuItem), { headers: this.headers });
+    return this.http.put(
+      environment.baseUrl + ApiPaths.Menu + '/' + itemId,
+      JSON.stringify(menuItem),
+      { headers: this.headers }
+    );
   }
 
   deleteMenuItem(itemId: string): any {
-    return this.http.delete(environment.baseUrl + ApiPaths.Menu + "/" + itemId);
+    return this.http.delete(environment.baseUrl + ApiPaths.Menu + '/' + itemId);
   }
 }

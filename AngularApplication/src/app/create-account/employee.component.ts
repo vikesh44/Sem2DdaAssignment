@@ -13,7 +13,10 @@ import { CreateAccountComponent } from './create-account.component';
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
-  constructor(private accountService: AccountService, public dialog: MatDialog) {
+  constructor(
+    private accountService: AccountService,
+    public dialog: MatDialog
+  ) {
     this.getAllEmployees();
   }
 
@@ -50,14 +53,20 @@ export class EmployeeComponent implements OnInit {
 
   addEmployeeDialog() {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
-      width: '25%'
+      width: '25%',
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllEmployees();
     });
   }
 
   updateEmployeeDialog(row: any) {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
       width: '25%',
-      data: row
+      data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllEmployees();
     });
   }
   deleteEmployee(row: any) {

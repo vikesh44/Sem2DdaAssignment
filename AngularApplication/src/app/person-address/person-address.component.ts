@@ -13,7 +13,10 @@ import { AddressDialogComponent } from './address-dialog/address-dialog.componen
   styleUrls: ['./person-address.component.scss'],
 })
 export class PersonAddressComponent implements OnInit {
-  constructor(private personAddressService: PersonAddressService, public dialog: MatDialog) {
+  constructor(
+    private personAddressService: PersonAddressService,
+    public dialog: MatDialog
+  ) {
     this.getAllPersonAddress();
   }
 
@@ -35,40 +38,50 @@ export class PersonAddressComponent implements OnInit {
   }
 
   getAllPersonAddress() {
-    this.personAddressService.getAllPersonAddress(localStorage.getItem('personId')).subscribe({
-      next: (res: PersonAddress[] | undefined) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error: () => {
-        alert('Error while reading your Address!');
-      },
-    });
+    this.personAddressService
+      .getAllPersonAddress(localStorage.getItem('personId'))
+      .subscribe({
+        next: (res: PersonAddress[] | undefined) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: () => {
+          alert('Error while reading your Address!');
+        },
+      });
   }
 
   addPersonAddressDialog() {
     const dialogRef = this.dialog.open(AddressDialogComponent, {
-      width: '25%'
+      width: '25%',
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllPersonAddress();
     });
   }
 
   updatePersonAddressDialog(row: any) {
     const dialogRef = this.dialog.open(AddressDialogComponent, {
       width: '25%',
-      data: row
+      data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllPersonAddress();
     });
   }
 
   deletePersonAddress(row: any) {
-    this.personAddressService.deletePersonAddress(localStorage.getItem('personId'), row.addressNo).subscribe({
-      next: () => {
-        alert('Address deleted!');
-        this.getAllPersonAddress();
-      },
-      error: (err: any) => {
-        alert('Error while deleting Address!');
-      },
-    });
+    this.personAddressService
+      .deletePersonAddress(localStorage.getItem('personId'), row.addressNo)
+      .subscribe({
+        next: () => {
+          alert('Address deleted!');
+          this.getAllPersonAddress();
+        },
+        error: (err: any) => {
+          alert('Error while deleting Address!');
+        },
+      });
   }
 }

@@ -17,6 +17,9 @@ import { PersonAddressComponent } from './person-address/person-address.componen
 import { AddressDialogComponent } from './person-address/address-dialog/address-dialog.component';
 import { OrderComponent } from './order/order.component';
 import { CreateOrderDialogComponent } from './order/create-order-dialog/create-order.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OrderItemDialogComponent } from './order/order-item-dialog/order-item-dialog.component';
+import { PrintOrderDialogComponent } from './order/print-order/print-order.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptor/token.interceptor';
@@ -42,8 +45,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { OrderItemsComponent } from './order/order-items/order-items.component';
-import { OrderItemDialogComponent } from './order/order-item-dialog/order-item-dialog.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -90,6 +91,7 @@ const MaterialComponents = [
     CreateOrderDialogComponent,
     OrderItemsComponent,
     OrderItemDialogComponent,
+    PrintOrderDialogComponent,
   ],
   imports: [MaterialComponents],
   providers: [

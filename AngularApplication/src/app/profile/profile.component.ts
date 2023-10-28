@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ProfileService } from './profile.service';
-import { Persondetail, SavePersonDetails } from '../create-account/personDetail';
+import {
+  Persondetail,
+  SavePersonDetails,
+} from '../create-account/personDetail';
 
 @Component({
   selector: 'app-update-profile',
@@ -34,7 +37,9 @@ export class ProfileComponent implements OnInit {
       next: (res: Persondetail[]) => {
         this.updateProfileForm.controls['userName'].setValue(res[0].userName);
         this.updateProfileForm.controls['emailId'].setValue(res[0].emailId);
-        this.updateProfileForm.controls['dateOfBirth'].setValue(res[0].dateOfBirth);
+        this.updateProfileForm.controls['dateOfBirth'].setValue(
+          res[0].dateOfBirth
+        );
         this.updateProfileForm.controls['firstName'].setValue(res[0].firstName);
         this.updateProfileForm.controls['lastName'].setValue(res[0].lastName);
         this.updateProfileForm.controls['phoneNo'].setValue(res[0].phoneNo);
@@ -46,7 +51,7 @@ export class ProfileComponent implements OnInit {
   }
 
   createAccount() {
-    alert(String(localStorage.getItem('isCustomer')) == "true");
+    alert(String(localStorage.getItem('isCustomer')) == 'true');
 
     var modelData: SavePersonDetails = {
       personId: String(localStorage.getItem('personId')),
@@ -59,7 +64,7 @@ export class ProfileComponent implements OnInit {
       firstName: this.updateProfileForm.value.firstName,
       lastName: this.updateProfileForm.value.lastName,
       phoneNo: this.updateProfileForm.value.phoneNo,
-      isCustomer: String(localStorage.getItem('isCustomer')) == "true"
+      isCustomer: String(localStorage.getItem('isCustomer')) == 'true',
     };
 
     this.profileService.updatePerson(modelData).subscribe({

@@ -4,28 +4,29 @@ import { LoginService } from './login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateAccountComponent } from '../create-account/create-account.component';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  userName = "";
-  password = "";
-  tokenValue = "";
+  userName = '4';
+  password = '4';
+  tokenValue = '';
   hide = true;
 
-  constructor(private loginService: LoginService, private fb: FormBuilder, public dialog: MatDialog) {
-  }
+  constructor(
+    private loginService: LoginService,
+    private fb: FormBuilder,
+    public dialog: MatDialog
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required]],
-    password: ['', [Validators.required]]
-  })
+    password: ['', [Validators.required]],
+  });
 
   login() {
     if (!this.loginForm.valid) {
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   createAccount() {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
-      width: '25%'
+      width: '25%',
     });
   }
 }

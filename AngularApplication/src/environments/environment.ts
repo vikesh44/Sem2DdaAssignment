@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5224/api'
+  baseUrl: 'http://localhost:5224/api',
 };
 
 export enum ApiPaths {
@@ -13,12 +13,12 @@ export enum ApiPaths {
   Menu = '/Menu',
   Person = '/Person',
   CreateAccount = '/Person/CreatePersonAccount',
-  PersonAddress='/PersonAddress',
-  Order='/Order',
-  AddOrderItems='/Order/AddOrderItems',
-  UpdateQuantity='/Order/UpdateQuantity',
-  GetEmployees='/GetEmployees',
-  GetCustomers='/GetCustomers',
+  PersonAddress = '/PersonAddress',
+  Order = '/Order',
+  AddOrderItems = '/Order/AddOrderItems',
+  UpdateQuantity = '/Order/UpdateQuantity',
+  GetEmployees = '/GetEmployees',
+  GetCustomers = '/GetCustomers',
 }
 
 export enum PersondetailPaths {
@@ -28,7 +28,7 @@ export enum PersondetailPaths {
   DateOfBirth = 'DateOfBirth=',
   FirstName = 'FirstName=',
   LastName = 'LastName=',
-  PhoneNo = 'PhoneNo='
+  PhoneNo = 'PhoneNo=',
 }
 
 /*

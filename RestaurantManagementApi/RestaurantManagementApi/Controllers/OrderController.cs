@@ -56,7 +56,7 @@ namespace RestaurantManagementApi.Controllers
                 new ProcedureParameter ("@OrderId", orderId)
             };
 
-            return Ok(await DbHelper.Instance.GetData<OrderItem>("SSP_GetOrderItems", parameters));
+            return Ok(await DbHelper.Instance.GetData<GetOrderItem>("SSP_GetOrderItems", parameters));
         }
 
         [HttpPost]

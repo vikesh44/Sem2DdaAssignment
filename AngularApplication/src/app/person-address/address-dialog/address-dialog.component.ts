@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PersonAddressService } from '../person-address.service';
 import { PersonAddress } from '../personAddress';
 
-
 @Component({
   selector: 'app-address-dialog',
   templateUrl: './address-dialog.component.html',
@@ -12,14 +11,14 @@ import { PersonAddress } from '../personAddress';
 })
 export class AddressDialogComponent implements OnInit {
   addressDialogForm!: FormGroup;
-  buttonText: string = "Add";
+  buttonText: string = 'Add';
 
   constructor(
     private formBuilder: FormBuilder,
     private addressService: PersonAddressService,
     private addressDialog: MatDialogRef<AddressDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public editData: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.addressDialogForm = this.formBuilder.group({
@@ -31,12 +30,16 @@ export class AddressDialogComponent implements OnInit {
     });
 
     if (this.editData) {
-      this.buttonText = "Update";
-      this.addressDialogForm.controls["addressNo"].setValue(this.editData.addressNo);
-      this.addressDialogForm.controls["houseNo"].setValue(this.editData.houseNo);
-      this.addressDialogForm.controls["area"].setValue(this.editData.area);
-      this.addressDialogForm.controls["city"].setValue(this.editData.city);
-      this.addressDialogForm.controls["zip"].setValue(this.editData.zip);
+      this.buttonText = 'Update';
+      this.addressDialogForm.controls['addressNo'].setValue(
+        this.editData.addressNo
+      );
+      this.addressDialogForm.controls['houseNo'].setValue(
+        this.editData.houseNo
+      );
+      this.addressDialogForm.controls['area'].setValue(this.editData.area);
+      this.addressDialogForm.controls['city'].setValue(this.editData.city);
+      this.addressDialogForm.controls['zip'].setValue(this.editData.zip);
     }
   }
 

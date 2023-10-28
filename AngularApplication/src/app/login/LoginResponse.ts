@@ -1,5 +1,5 @@
 export class LoginResponse {
-    userName!: string
-    personId!: string
-    accessToken!: string
+  userName!: string;
+  personId!: string;
+  accessToken!: string;
 }

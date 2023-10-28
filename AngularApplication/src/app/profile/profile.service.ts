@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { Persondetail, SavePersonDetails } from '../create-account/personDetail';
+import {
+  Persondetail,
+  SavePersonDetails,
+} from '../create-account/personDetail';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +16,9 @@ export class ProfileService {
 
   getPersonDetail(): any {
     var personId = localStorage.getItem('personId');
-    return this.http.get<Persondetail>(environment.baseUrl + ApiPaths.Person + '/' + personId);
+    return this.http.get<Persondetail>(
+      environment.baseUrl + ApiPaths.Person + '/' + personId
+    );
   }
 
   updatePerson(persondetail: SavePersonDetails): any {

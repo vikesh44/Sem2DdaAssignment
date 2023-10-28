@@ -12,7 +12,9 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   getEmployees(): any {
-    return this.http.get<any>(environment.baseUrl + ApiPaths.Person + ApiPaths.GetEmployees);
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.Person + ApiPaths.GetEmployees
+    );
   }
 
   addPerson(persondetail: SavePersonDetails): any {
@@ -24,10 +26,16 @@ export class AccountService {
   }
 
   updatePerson(itemId: string, menuItem: SavePersonDetails): any {
-    return this.http.put(environment.baseUrl + ApiPaths.Person + '/' + itemId, JSON.stringify(menuItem), { headers: this.headers });
+    return this.http.put(
+      environment.baseUrl + ApiPaths.Person + '/' + itemId,
+      JSON.stringify(menuItem),
+      { headers: this.headers }
+    );
   }
 
   deletePerson(personId: string, isCustomer: boolean): any {
-    return this.http.delete(environment.baseUrl + ApiPaths.Person + "/" + personId + "/" + isCustomer);
+    return this.http.delete(
+      environment.baseUrl + ApiPaths.Person + '/' + personId + '/' + isCustomer
+    );
   }
 }

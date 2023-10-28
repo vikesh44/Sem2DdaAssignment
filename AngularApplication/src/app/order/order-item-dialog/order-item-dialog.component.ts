@@ -36,7 +36,9 @@ export class OrderItemDialogComponent implements OnInit {
       this.orderId = String(params.get('orderId'));
     });
     this.getAllMenuItems();
-    this.orderItemDialogForm.controls['orderId'].setValue(this.editData.orderId);
+    this.orderItemDialogForm.controls['orderId'].setValue(
+      this.editData.orderId
+    );
 
     if (this.editData.orderItem) {
       this.buttonText = 'Update';

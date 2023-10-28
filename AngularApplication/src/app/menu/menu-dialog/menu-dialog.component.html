@@ -1,30 +1,60 @@
-<h2 mat-dialog-title style="background-color: primary;">Add New Menu Item</h2>
+<h2 mat-dialog-title style="background-color: primary">Add New Menu Item</h2>
 <div mat-dialog-content>
   <form [formGroup]="menuDialogForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Item Id</mat-label>
-      <input formControlName="itemId" matInput placeholder="Enter Item Id" required />
+      <input
+        formControlName="itemId"
+        matInput
+        placeholder="Enter Item Id"
+        required
+      />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Category</mat-label>
-      <input formControlName="category" matInput placeholder="Enter Category" required />
+      <input
+        formControlName="category"
+        matInput
+        placeholder="Enter Category"
+        required
+      />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Item Name</mat-label>
-      <input formControlName="name" matInput placeholder="Enter Item Name" required />
+      <input
+        formControlName="name"
+        matInput
+        placeholder="Enter Item Name"
+        required
+      />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Item Cost</mat-label>
-      <input formControlName="cost" matInput placeholder="Enter Item Cost" required />
+      <input
+        formControlName="cost"
+        matInput
+        placeholder="Enter Item Cost"
+        required
+      />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Availability</mat-label>
-      <input formControlName="isAvailable" hidden matInput placeholder="Enter Item Cost" required />
-      <mat-checkbox formControlName="isAvailable">Is Item Available</mat-checkbox>
+      <input
+        formControlName="isAvailable"
+        hidden
+        matInput
+        placeholder="Enter Item Cost"
+        required
+      />
+      <mat-checkbox formControlName="isAvailable"
+        >Is Item Available</mat-checkbox
+      >
     </mat-form-field>
   </form>
 </div>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-raised-button color="primary" (click)="addUpdateMenuItem()">{{buttonText}}</button>
+  <button mat-raised-button color="primary" (click)="addUpdateMenuItem()">
+    {{ buttonText }}
+  </button>
 </mat-dialog-actions>

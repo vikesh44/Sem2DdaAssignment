@@ -35,7 +35,12 @@
           Items
         </button>
       </a>
-      <a mat-list-item routerLink="employee" routerLinkActive="active" *ngIf="isEmployee">
+      <a
+        mat-list-item
+        routerLink="employee"
+        routerLinkActive="active"
+        *ngIf="isEmployee"
+      >
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
           <mat-icon class="matIconStyle">card_membership</mat-icon
           >&nbsp;&nbsp;Employees

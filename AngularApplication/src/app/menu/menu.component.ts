@@ -2,7 +2,6 @@
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license */
 
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -19,7 +18,11 @@ import { AuthService } from '../shared/auth.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private menuService: MenuService, public dialog: MatDialog, private authService: AuthService) {
+  constructor(
+    private menuService: MenuService,
+    public dialog: MatDialog,
+    private authService: AuthService
+  ) {
     this.getAllMenuItems();
   }
 
@@ -57,14 +60,20 @@ export class MenuComponent implements OnInit {
 
   addMenuItemDialog() {
     const dialogRef = this.dialog.open(MenuDialogComponent, {
-      width: '25%'
+      width: '25%',
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllMenuItems();
     });
   }
 
   updateMenuItemDialog(row: any) {
     const dialogRef = this.dialog.open(MenuDialogComponent, {
       width: '25%',
-      data: row
+      data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllMenuItems();
     });
   }
   deleteMenuItem(row: any) {

@@ -43,10 +43,7 @@ export class LoginService {
     const headers = { 'content-type': 'application/json' };
     return this.http
       .post<LoginResponse>(
-        environment.baseUrl +
-          ApiPaths.ForgotPassword +
-          '?emailId=' +
-          emailId,
+        environment.baseUrl + ApiPaths.ForgotPassword + '?emailId=' + emailId,
         { headers: headers }
       )
       .subscribe({

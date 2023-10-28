@@ -22,16 +22,16 @@ import { Router } from '@angular/router';
 export class OrderComponent implements OnInit {
   createOrderDialogForm!: FormGroup;
 
-  constructor(private orderService: OrderService,
-              public dialog: MatDialog,
-              private formBuilder: FormBuilder,
-              private router: Router) {
-  }
+  constructor(
+    private orderService: OrderService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   displayedColumns: string[] = [
     'OrderId',
-    'CustomerId',
-    'EmployeeId',
+    'CustomerName',
+    'EmployeeName',
     'TableId',
     'OrderType',
     'Cost',
@@ -66,9 +66,12 @@ export class OrderComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateOrderDialogComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllOrders();
+    });
   }
 
   gotoOrderItems(row: PersonOrder) {
-    this.router.navigate(['/order-items/'+row.orderId]);
+    this.router.navigate(['/order-items/' + row.orderId]);
   }
 }
