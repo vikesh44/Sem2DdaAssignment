@@ -1,4 +1,9 @@
-<h2 mat-dialog-title style="background-color: primary">Print Bill</h2>
+<h2 mat-dialog-title>Print Bill</h2>
+<h3>{{ restaurantDetails.name }}</h3>
+<h3>Fssai No: {{ restaurantDetails.fssaiNo }}</h3>
+<h4>{{ restaurantDetails.area }}</h4>
+<h4>{{ restaurantDetails.city }}</h4>
+<h4>{{ restaurantDetails.zip }}</h4>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Name">

@@ -12,6 +12,7 @@ import { PersonAddressComponent } from './person-address/person-address.componen
 import { OrderComponent } from './order/order.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { RoleGuard } from './shared/role.guard';
+import { ChefDisplayComponent } from './order/chef-display/chef-display.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'employee', component: EmployeeComponent, canActivate: [RoleGuard] },
       { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
       { path: 'order-items/:orderId', component: OrderItemsComponent, canActivate: [AuthGuard] },
+      { path: 'chef-display', component: ChefDisplayComponent, canActivate: [RoleGuard] },
     ],
   },
   { path: '**', redirectTo: 'login' },

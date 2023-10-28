@@ -77,4 +77,12 @@ export class OrderService {
   getMenuItems(): any {
     return this.http.get<any>(environment.baseUrl + ApiPaths.Menu);
   }
+
+  getRestaurantDetail(): any {
+    return this.http.get<any>(environment.baseUrl + ApiPaths.GetRestaurantDetail+'/11523852123456');
+  }
+
+  getChefDisplay(): any {
+    return this.http.get<any>(environment.baseUrl + ApiPaths.GetChefDisplayItems);
+  }
 }

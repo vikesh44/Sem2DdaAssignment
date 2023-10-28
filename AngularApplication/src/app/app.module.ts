@@ -45,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { ChefDisplayComponent } from './order/chef-display/chef-display.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -92,6 +93,7 @@ const MaterialComponents = [
     OrderItemsComponent,
     OrderItemDialogComponent,
     PrintOrderDialogComponent,
+    ChefDisplayComponent,
   ],
   imports: [MaterialComponents],
   providers: [

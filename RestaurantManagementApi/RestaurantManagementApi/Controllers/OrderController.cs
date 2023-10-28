@@ -140,5 +140,27 @@ namespace RestaurantManagementApi.Controllers
         }
 
         #endregion
+
+        #region Other Methods
+
+        [HttpGet]
+        [Route("GetRestaurantDetail/{fssaiNo}")]
+        public async Task<IActionResult> GetRestaurantDetail([FromRoute] string fssaiNo)
+        {
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@FssaiNo", fssaiNo)
+            };
+            return Ok(await DbHelper.Instance.GetData<RestaurantDetail>("SSP_GetRestaurantDetail", parameters));
+        }
+
+        [HttpGet]
+        [Route("GetChefDisplayItems")]
+        public async Task<IActionResult> GetChefDisplayItems()
+        {
+            return Ok(await DbHelper.Instance.GetData<ChefItem>("SSP_GetChefDisplay"));
+        }
+
+        #endregion
     }
 }

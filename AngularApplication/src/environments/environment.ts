@@ -19,6 +19,8 @@ export enum ApiPaths {
   UpdateQuantity = '/Order/UpdateQuantity',
   GetEmployees = '/GetEmployees',
   GetCustomers = '/GetCustomers',
+  GetRestaurantDetail = '/Order/GetRestaurantDetail',
+  GetChefDisplayItems = '/Order/GetChefDisplayItems',
 }
 
 export enum PersondetailPaths {

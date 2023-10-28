@@ -44,3 +44,17 @@ export interface OrderBill {
   cost: number;
   amount: number;
 }
+
+export interface RestaurantDetail {
+  fssaiNo: string;
+  name: string;
+  area: string;
+  city: string;
+  zip: string;
+}
+
+export interface ChefDisplay {
+  itemId: string;
+  name: string;
+  quantity: number;
+}

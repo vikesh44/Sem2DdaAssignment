@@ -42,8 +42,17 @@
         *ngIf="isEmployee"
       >
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">card_membership</mat-icon
-          >&nbsp;&nbsp;Employees
+          <mat-icon class="matIconStyle">person</mat-icon>&nbsp;&nbsp;Employees
+        </button>
+      </a>
+      <a
+        mat-list-item
+        routerLink="chef-display"
+        routerLinkActive="active"
+        *ngIf="isEmployee"
+      >
+        <button (click)="sidenav.close()" mat-icon-button class="navButton">
+          <mat-icon class="matIconStyle">microwave</mat-icon>&nbsp;&nbsp;Chef Display
         </button>
       </a>
     </mat-nav-list>
