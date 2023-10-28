@@ -7,18 +7,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { OrderService } from '../order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  BillItem,
   GetOrderItem,
   OrderBill,
   OrderDialogData,
-  OrderItem,
 } from '../orderDto';
-import { MenuItem } from 'src/app/menu/menuItem';
 import { OrderItemDialogComponent } from '../order-item-dialog/order-item-dialog.component';
-import { AuthService } from 'src/app/shared/auth.service';
 import { PrintOrderDialogComponent } from '../print-order/print-order.component';
 
 @Component({
@@ -92,17 +90,25 @@ export class OrderItemsComponent implements OnInit {
 
   print() {
     // console.log(this.dataSource);
-    var orderBill: OrderBill[] = [];
+    var billItems: BillItem[] = [];
+    var billAmount: number = 0;
     this.dataSource.filteredData.forEach((data) => {
-      let orderItem: OrderBill = {
+      let orderItem: BillItem = {
         name: data.name,
         cost: data.cost,
         quantity: data.quantity,
         amount: data.cost * data.quantity,
       };
-      orderBill.push(orderItem);
+      billAmount += orderItem.amount;
+      billItems.push(orderItem);
     });
-    console.log(orderBill);
+
+    var orderBill: OrderBill = {
+      billItems: billItems,
+      orderId: this.orderId,
+      billAmount: billAmount,
+    };
+
     const dialogRef = this.dialog.open(PrintOrderDialogComponent, {
       width: '25%',
       data: orderBill,

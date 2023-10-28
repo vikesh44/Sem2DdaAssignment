@@ -43,6 +43,20 @@ namespace RestaurantManagementApi.Controllers
             return Ok(await DbHelper.Instance.GetData<PersonOrders>("SSP_GetPersonOrders", parameters));
         }
 
+        [HttpPut]
+        [Route("CompleteOrder/{orderId}")]
+        public async Task<IActionResult> CompleteOrder(string orderId)
+        {
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@OrderId", orderId)
+            };
+
+            int deletedRecords = await DbHelper.Instance.UpdateData("SSP_CompleteOrder", parameters);
+
+            return deletedRecords >= 1 ? Ok() : this.Content("Error completing order");
+        }
+
         #endregion
 
         #region OrderItems Methods

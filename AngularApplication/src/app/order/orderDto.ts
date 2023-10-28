@@ -38,11 +38,20 @@ export interface OrderDialogData {
   orderItem?: OrderItem;
 }
 
-export interface OrderBill {
+export interface BillItem {
   name: string;
   quantity: number;
   cost: number;
   amount: number;
+}
+
+export interface OrderBill {
+  billItems: BillItem[];
+  orderId: string;
+  customerId?: string;
+  employeeId?: string;
+  tableId?: number;
+  billAmount: number;
 }
 
 export interface RestaurantDetail {

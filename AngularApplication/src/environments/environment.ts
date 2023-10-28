@@ -19,8 +19,9 @@ export enum ApiPaths {
   UpdateQuantity = '/Order/UpdateQuantity',
   GetEmployees = '/GetEmployees',
   GetCustomers = '/GetCustomers',
-  GetRestaurantDetail = '/Order/GetRestaurantDetail',
+  GetRestaurantDetail = '/Order/GetRestaurantDetail/',
   GetChefDisplayItems = '/Order/GetChefDisplayItems',
+  CompleteOrder = '/Order/CompleteOrder',
 }
 
 export enum PersondetailPaths {
@@ -31,6 +32,10 @@ export enum PersondetailPaths {
   FirstName = 'FirstName=',
   LastName = 'LastName=',
   PhoneNo = 'PhoneNo=',
+}
+
+export enum Constants {
+  FssaiNumber = '11523852123456',
 }
 
 /*

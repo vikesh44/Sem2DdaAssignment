@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiPaths, environment } from 'src/environments/environment';
+import { ApiPaths, Constants, environment } from 'src/environments/environment';
 import { Order, OrderItem } from './orderDto';
 
 @Injectable({
@@ -79,10 +79,21 @@ export class OrderService {
   }
 
   getRestaurantDetail(): any {
-    return this.http.get<any>(environment.baseUrl + ApiPaths.GetRestaurantDetail+'/11523852123456');
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.GetRestaurantDetail + Constants.FssaiNumber
+    );
   }
 
   getChefDisplay(): any {
-    return this.http.get<any>(environment.baseUrl + ApiPaths.GetChefDisplayItems);
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.GetChefDisplayItems
+    );
+  }
+
+  completeOrder(orderId: string): any {
+    return this.http.put(
+      environment.baseUrl + ApiPaths.CompleteOrder + '/' + orderId,
+      { headers: this.headers }
+    );
   }
 }
