@@ -52,7 +52,6 @@ export class PrintOrderDialogComponent implements OnInit {
     this.orderService.getRestaurantDetail().subscribe({
       next: (res: RestaurantDetail[]) => {
         this.restaurantDetails = res[0];
-        console.log(this.restaurantDetails);
       },
       error: () => {
         alert('Error while reading Orders!');

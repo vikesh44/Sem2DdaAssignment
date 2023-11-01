@@ -90,7 +90,6 @@ export class OrderItemsComponent implements OnInit {
   }
 
   print() {
-    // console.log(this.dataSource);
     var billItems: BillItem[] = [];
     var billAmount: number = 0;
     this.dataSource.filteredData.forEach((data) => {

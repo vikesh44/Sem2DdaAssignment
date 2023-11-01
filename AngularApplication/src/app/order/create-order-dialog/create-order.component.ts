@@ -1,3 +1,4 @@
+import { PersonAddressService } from './../../person-address/person-address.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -6,6 +7,7 @@ import { Order } from '../orderDto';
 import { MatTableDataSource } from '@angular/material/table';
 import { Persondetail } from 'src/app/create-account/personDetail';
 import { AuthService } from 'src/app/shared/auth.service';
+import { PersonAddress } from 'src/app/person-address/personAddress';
 
 @Component({
   selector: 'app-create-order',
@@ -16,12 +18,19 @@ export class CreateOrderDialogComponent implements OnInit {
   createOrderDialogForm!: FormGroup;
   buttonText: string = 'Add';
   isEmployee!: boolean;
+  orderType: string[] = ['Dine In', 'Drive thru', 'Online'];
+  selectedOrderType: string = 'Dine In';
+
+  employeesData: Persondetail[] = [];
+  customerData: Persondetail[] = [];
+  addresses: PersonAddress[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private orderService: OrderService,
     private orderDialog: MatDialogRef<CreateOrderDialogComponent>,
-    private authService: AuthService
+    private authService: AuthService,
+    private personAddressService: PersonAddressService,
   ) {}
 
   ngOnInit(): void {
@@ -33,20 +42,15 @@ export class CreateOrderDialogComponent implements OnInit {
       employeeId: [''],
       customerId: [''],
       tableId: ['', Validators.required],
-      orderType: ['', Validators.required],
       isReservation: [''],
+      customerAddress: [''],
     });
   }
-
-  employeesData: Persondetail[] = [];
-  customerData: Persondetail[] = [];
-  orderType: string[] = ['Dine In', 'Online'];
 
   getAllEmployees() {
     this.orderService.getEmployees().subscribe({
       next: (res: Persondetail[]) => {
         this.employeesData = res;
-        console.log(localStorage.getItem('personId'));
         if (this.isEmployee) {
           this.createOrderDialogForm.controls['employeeId'].setValue(
             Number(localStorage.getItem('personId'))
@@ -79,7 +83,8 @@ export class CreateOrderDialogComponent implements OnInit {
       employeeId: String(this.createOrderDialogForm.value.employeeId),
       customerId: String(this.createOrderDialogForm.value.customerId),
       tableId: Number(this.createOrderDialogForm.value.tableId),
-      orderType: this.createOrderDialogForm.value.orderType,
+      // orderType: this.createOrderDialogForm.value.orderType,
+      orderType: this.selectedOrderType,
       isReservation: this.createOrderDialogForm.value.isReservation,
     };
 
@@ -94,5 +99,18 @@ export class CreateOrderDialogComponent implements OnInit {
       },
     });
     return orderData;
+  }
+
+  getAllPersonAddress() {
+    this.personAddressService
+      .getAllPersonAddress(String(this.createOrderDialogForm.value.customerId))
+      .subscribe({
+        next: (res: PersonAddress[]) => {
+          this.addresses = res;
+        },
+        error: () => {
+          alert('Error while reading your Address!');
+        },
+      });
   }
 }

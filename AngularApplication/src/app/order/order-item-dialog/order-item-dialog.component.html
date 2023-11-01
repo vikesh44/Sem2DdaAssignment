@@ -7,10 +7,9 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Item Id</mat-label>
-      <!-- <input formControlName="itemId" matInput placeholder="Enter Item Id" required /> -->
       <mat-select formControlName="itemId" placeholder="Menu Item" required>
         <mat-option *ngFor="let item of menuItems" [value]="item.itemId">
-          {{ item.name }}
+          {{ item.name }} <span *ngIf="!item.isAvailable">[Unavailable]</span>
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -23,7 +23,6 @@ export class TemplateComponent implements OnInit {
     this.name = userJson !== null ? `Hello ${userJson} ` : '';
     this.autoLogout(120000);
     this.isEmployee = this.authService.IsEmployee();
-    console.log(this.isEmployee);
   }
 
   autoLogout(expirationTime: number): void {
