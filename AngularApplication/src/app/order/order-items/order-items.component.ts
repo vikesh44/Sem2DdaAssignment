@@ -12,6 +12,7 @@ import { OrderService } from '../order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   BillItem,
+  BillPersonInfo,
   GetOrderItem,
   OrderBill,
   OrderDialogData,
@@ -103,8 +104,11 @@ export class OrderItemsComponent implements OnInit {
       billItems.push(orderItem);
     });
 
+    let billPersonInfo: BillPersonInfo = this.orderService.getDataForPrint();
+
     var orderBill: OrderBill = {
       billItems: billItems,
+      billPersonInfo: billPersonInfo,
       orderId: this.orderId,
       billAmount: billAmount,
     };

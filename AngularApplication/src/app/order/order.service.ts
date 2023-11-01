@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiPaths, Constants, environment } from 'src/environments/environment';
-import { Order, OrderItem } from './orderDto';
+import { BillPersonInfo, Order, OrderItem } from './orderDto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
   private headers = { 'content-type': 'application/json' };
+  orderBill!: BillPersonInfo;
 
   constructor(private http: HttpClient) {}
 
@@ -95,5 +96,13 @@ export class OrderService {
       environment.baseUrl + ApiPaths.CompleteOrder + '/' + orderId,
       { headers: this.headers }
     );
+  }
+
+  saveDataForPrint(orderBill: BillPersonInfo) {
+    this.orderBill = orderBill;
+  }
+
+  getDataForPrint() {
+    return this.orderBill;
   }
 }

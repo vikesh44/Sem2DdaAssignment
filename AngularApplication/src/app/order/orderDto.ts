@@ -47,11 +47,15 @@ export interface BillItem {
 
 export interface OrderBill {
   billItems: BillItem[];
+  billPersonInfo: BillPersonInfo;
   orderId: string;
-  customerId?: string;
-  employeeId?: string;
-  tableId?: number;
   billAmount: number;
+}
+
+export interface BillPersonInfo {
+  customerName: string;
+  employeeName: string;
+  tableId: number;
 }
 
 export interface RestaurantDetail {

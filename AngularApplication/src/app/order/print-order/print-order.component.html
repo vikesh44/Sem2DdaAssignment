@@ -5,6 +5,22 @@
   <h4>{{ restaurantDetails.area }}</h4>
   <h4>{{ restaurantDetails.city }}</h4>
   <h4>{{ restaurantDetails.zip }}</h4>
+
+  <table>
+    <tr>
+      <td><mat-label style="font-weight: bold;">Table Id: </mat-label></td>
+      <td><mat-label>{{editData.billPersonInfo.tableId}}</mat-label></td>
+    </tr>
+    <tr>
+      <td><mat-label style="font-weight: bold;">Employee: </mat-label></td>
+      <td><mat-label>{{editData.billPersonInfo.employeeName}}</mat-label></td>
+    </tr>
+    <tr>
+      <td><mat-label style="font-weight: bold;">Customer: </mat-label></td>
+      <td><mat-label>{{editData.billPersonInfo.customerName}}</mat-label></td>
+    </tr>
+  </table>
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Name">

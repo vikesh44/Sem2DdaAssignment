@@ -1,3 +1,4 @@
+import { BillPersonInfo } from './orderDto';
 /**  Copyright 2019 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at http://angular.io/license */
@@ -72,6 +73,13 @@ export class OrderComponent implements OnInit {
   }
 
   gotoOrderItems(row: PersonOrder) {
+    let billPersonInfo: BillPersonInfo = {
+      customerName: row.customerName,
+      employeeName: row.employeeName,
+      tableId: row.tableId,
+    };
+
+    this.orderService.saveDataForPrint(billPersonInfo);
     this.router.navigate(['/order-items/' + row.orderId]);
   }
 }
