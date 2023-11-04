@@ -12,7 +12,7 @@ export enum ApiPaths {
   ForgotPassword = '/Login/ForgotPassword',
   Menu = '/Menu',
   Person = '/Person',
-  CreateAccount = '/Person/CreatePersonAccount',
+  CreateAccount = '/Login/CreatePersonAccount',
   PersonAddress = '/PersonAddress',
   Order = '/Order',
   AddOrderItems = '/Order/AddOrderItems',

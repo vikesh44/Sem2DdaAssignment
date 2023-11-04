@@ -6,7 +6,7 @@
       <input formControlName="orderId" matInput required readonly />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Item Id</mat-label>
+      <mat-label>Item</mat-label>
       <mat-select formControlName="itemId" placeholder="Menu Item" required>
         <mat-option *ngFor="let item of menuItems" [value]="item.itemId">
           {{ item.name }} <span *ngIf="!item.isAvailable">[Unavailable]</span>

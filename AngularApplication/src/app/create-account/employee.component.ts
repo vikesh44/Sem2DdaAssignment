@@ -40,7 +40,12 @@ export class EmployeeComponent implements OnInit {
 
   getAllEmployees() {
     this.accountService.getEmployees().subscribe({
-      next: (res: Persondetail[] | undefined) => {
+      next: (res: Persondetail[]) => {
+        console.log(res);
+        res = res.filter((obj) => {
+          return Number(obj.personId) !== 9999999999;
+        });
+        console.log(res);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

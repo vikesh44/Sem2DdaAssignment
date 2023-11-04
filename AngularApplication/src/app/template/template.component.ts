@@ -21,7 +21,7 @@ export class TemplateComponent implements OnInit {
   ngOnInit(): void {
     const userJson = localStorage.getItem('currentUser');
     this.name = userJson !== null ? `Hello ${userJson} ` : '';
-    this.autoLogout(120000);
+    // this.autoLogout(120000);
     this.isEmployee = this.authService.IsEmployee();
   }
 

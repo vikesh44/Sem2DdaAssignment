@@ -18,6 +18,7 @@ export class AccountService {
   }
 
   addPerson(persondetail: SavePersonDetails): any {
+    console.log(JSON.stringify(persondetail));
     return this.http.post(
       environment.baseUrl + ApiPaths.CreateAccount,
       JSON.stringify(persondetail),

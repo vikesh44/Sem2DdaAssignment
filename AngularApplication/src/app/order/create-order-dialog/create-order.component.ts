@@ -1,10 +1,9 @@
 import { PersonAddressService } from './../../person-address/person-address.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from '../order.service';
 import { Order } from '../orderDto';
-import { MatTableDataSource } from '@angular/material/table';
 import { Persondetail } from 'src/app/create-account/personDetail';
 import { AuthService } from 'src/app/shared/auth.service';
 import { PersonAddress } from 'src/app/person-address/personAddress';
@@ -30,7 +29,7 @@ export class CreateOrderDialogComponent implements OnInit {
     private orderService: OrderService,
     private orderDialog: MatDialogRef<CreateOrderDialogComponent>,
     private authService: AuthService,
-    private personAddressService: PersonAddressService,
+    private personAddressService: PersonAddressService
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +44,8 @@ export class CreateOrderDialogComponent implements OnInit {
       isReservation: [''],
       customerAddress: [''],
     });
+
+    this.createOrderDialogForm.controls['isReservation'].setValue(false);
   }
 
   getAllEmployees() {
@@ -79,6 +80,7 @@ export class CreateOrderDialogComponent implements OnInit {
   }
 
   createOrder() {
+    console.log('Value:' + this.createOrderDialogForm.value.isReservation);
     var orderData: Order = {
       employeeId: String(this.createOrderDialogForm.value.employeeId),
       customerId: String(this.createOrderDialogForm.value.customerId),

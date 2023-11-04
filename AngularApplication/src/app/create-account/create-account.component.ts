@@ -86,10 +86,14 @@ export class CreateAccountComponent implements OnInit {
       next: () => {
         this.createAccountForm.reset();
         this.accountDialog.close();
-        alert('Model Added Successfully.');
+        if (this.editData) {
+          alert('Details Updated Successfully.');
+        }else {
+          alert('Account Created Successfully.');
+        }
       },
       error: () => {
-        alert('Error while adding Model.');
+        alert('Error while performing operation, please try again after sometime.');
       },
     });
     return modelData;

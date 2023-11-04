@@ -24,7 +24,6 @@
         placeholder="Select Customer"
         required
         (selectionChange)="getAllPersonAddress()"
-        [disabled]="!isEmployee"
       >
         <mat-option
           *ngFor="let customer of customerData"

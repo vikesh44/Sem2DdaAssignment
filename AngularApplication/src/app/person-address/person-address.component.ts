@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonAddressService } from './person-address.service';
-import { PersonAddress } from './personAddress';
+import { PersonAddress, PersonAddressDialog } from './personAddress';
 import { AddressDialogComponent } from './address-dialog/address-dialog.component';
 
 @Component({
@@ -32,6 +32,7 @@ export class PersonAddressComponent implements OnInit {
   dataSource!: MatTableDataSource<PersonAddress>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dialogAddressNo!: number;
 
   ngOnInit(): void {
     this.getAllPersonAddress();
@@ -41,7 +42,13 @@ export class PersonAddressComponent implements OnInit {
     this.personAddressService
       .getAllPersonAddress(localStorage.getItem('personId'))
       .subscribe({
-        next: (res: PersonAddress[] | undefined) => {
+        next: (res: PersonAddress[]) => {
+          if (res.length == 0) {
+            this.dialogAddressNo = 1;
+          } else {
+            this.dialogAddressNo =
+              Math.max(...res.map((item) => item.addressNo)) + 1;
+          }
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -53,18 +60,24 @@ export class PersonAddressComponent implements OnInit {
   }
 
   addPersonAddressDialog() {
+    var dialogData: PersonAddressDialog = { addressNo: this.dialogAddressNo };
     const dialogRef = this.dialog.open(AddressDialogComponent, {
       width: '25%',
+      data: dialogData,
     });
     dialogRef.afterClosed().subscribe((data) => {
       this.getAllPersonAddress();
     });
   }
 
-  updatePersonAddressDialog(row: any) {
+  updatePersonAddressDialog(row: PersonAddress) {
+    var dialogData: PersonAddressDialog = {
+      addressNo: row.addressNo,
+      personAddress: row,
+    };
     const dialogRef = this.dialog.open(AddressDialogComponent, {
       width: '25%',
-      data: row,
+      data: dialogData,
     });
     dialogRef.afterClosed().subscribe((data) => {
       this.getAllPersonAddress();

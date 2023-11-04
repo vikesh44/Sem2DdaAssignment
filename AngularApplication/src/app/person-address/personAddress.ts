@@ -6,3 +6,8 @@ export interface PersonAddress {
   city: string;
   zip: string;
 }
+
+export interface PersonAddressDialog {
+  addressNo: number;
+  personAddress?: PersonAddress;
+}

@@ -19,6 +19,7 @@
     color="primary"
     (click)="addOrderItemDialog()"
     class="action-button"
+    *ngIf="!isCompleted"
   >
     <mat-icon>add_chart</mat-icon>
   </button>

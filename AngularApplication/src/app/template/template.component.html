@@ -13,7 +13,7 @@
       <mat-icon>manage_accounts</mat-icon>Profile
     </button>
     <button mat-menu-item routerLink="address">
-      <mat-icon>home</mat-icon>Address
+      <mat-icon>location_on</mat-icon>Address
     </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>Sign out
@@ -26,12 +26,12 @@
     <mat-nav-list>
       <a mat-list-item routerLink="order" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">list_alt</mat-icon>&nbsp;&nbsp;Orders
+          <mat-icon class="matIconStyle">restaurant_menu</mat-icon>&nbsp;&nbsp;Orders
         </button>
       </a>
       <a mat-list-item routerLink="menu" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">analytics</mat-icon>&nbsp;&nbsp;Menu
+          <mat-icon class="matIconStyle">menu_book</mat-icon>&nbsp;&nbsp;Menu
           Items
         </button>
       </a>
@@ -42,7 +42,7 @@
         *ngIf="isEmployee"
       >
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">person</mat-icon>&nbsp;&nbsp;Employees
+          <mat-icon class="matIconStyle">group</mat-icon>&nbsp;&nbsp;Employees
         </button>
       </a>
       <a

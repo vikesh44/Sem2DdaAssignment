@@ -28,6 +28,7 @@ import { PrintOrderDialogComponent } from '../print-order/print-order.component'
 export class OrderItemsComponent implements OnInit {
   orderItemsForm!: FormGroup;
   orderId!: string;
+  isCompleted: boolean = false;
 
   constructor(
     private orderService: OrderService,
@@ -45,6 +46,8 @@ export class OrderItemsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.orderId = String(params.get('orderId'));
+      this.isCompleted = params.get('isCompleted') === 'false';
+      this.isCompleted = !this.isCompleted;
     });
     this.getAllOrderItems();
   }

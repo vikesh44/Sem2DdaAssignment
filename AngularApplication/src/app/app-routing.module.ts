@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'address', component: PersonAddressComponent, canActivate: [AuthGuard] },
       { path: 'employee', component: EmployeeComponent, canActivate: [RoleGuard] },
       { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
-      { path: 'order-items/:orderId', component: OrderItemsComponent, canActivate: [AuthGuard] },
+      { path: 'order-items/:orderId/:isCompleted', component: OrderItemsComponent, canActivate: [AuthGuard] },
       { path: 'chef-display', component: ChefDisplayComponent, canActivate: [RoleGuard] },
     ],
   },

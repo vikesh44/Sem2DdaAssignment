@@ -8,6 +8,7 @@ import { PersonAddress } from './personAddress';
 })
 export class PersonAddressService {
   private headers = { 'content-type': 'application/json' };
+  addressNo: number=0;
 
   constructor(private http: HttpClient) {}
 
@@ -45,5 +46,13 @@ export class PersonAddressService {
         '/' +
         addressNo
     );
+  }
+
+  setAddressNo(addressNo: number) {
+    this.addressNo = addressNo;
+  }
+
+  getAddressNo(): number {
+    return this.addressNo;
   }
 }

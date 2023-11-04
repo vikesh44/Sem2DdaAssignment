@@ -80,6 +80,6 @@ export class OrderComponent implements OnInit {
     };
 
     this.orderService.saveDataForPrint(billPersonInfo);
-    this.router.navigate(['/order-items/' + row.orderId]);
+    this.router.navigate(['/order-items/' + row.orderId + '/' + row.isCompleted]);
   }
 }

@@ -10,8 +10,8 @@ import { CreateAccountComponent } from '../create-account/create-account.compone
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  userName = '4';
-  password = '4';
+  userName = 'Vikesh';
+  password = 'Vikesh';
   tokenValue = '';
   hide = true;
 
